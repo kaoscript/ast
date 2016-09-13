@@ -1,0 +1,187 @@
+/**
+ * ast.ks
+ * Version 0.1.0
+ * September 13th, 2016
+ *
+ * Copyright (c) 2016 Baptiste Augrain
+ * Licensed under the MIT license.
+ * http://www.opensource.org/licenses/mit-license.php
+ **/
+#![cfg(variables='es5')]
+
+export enum AssignmentOperator { // {{{
+	Addition = 1
+	BitwiseAnd
+	BitwiseLeftShift
+	BitwiseOr
+	BitwiseRightShift
+	BitwiseXor
+	Division
+	Equality
+	Existential
+	Modulo
+	Multiplication
+	Subtraction
+} // }}}
+
+export enum BinaryOperator { // {{{
+	And = 1
+	Addition
+	Assignment
+	BitwiseAnd
+	BitwiseLeftShift
+	BitwiseOr
+	BitwiseRightShift
+	BitwiseXor
+	Division
+	Equality
+	Existential
+	GreaterThan
+	GreaterThanOrEqual
+	Inequality
+	LessThan
+	LessThanOrEqual
+	Modulo
+	Multiplication
+	Or
+	Subtraction
+	TypeCast
+	TypeCheck
+} // }}}
+
+export enum ClassModifier {
+	Final = 1
+}
+
+export enum FunctionModifier { // {{{
+	Async = 1
+} // }}}
+
+export enum Kind { // {{{
+	ArrayBinding = 1
+	ArrayComprehension
+	ArrayExpression
+	ArrayRange
+	AttributeDeclaration
+	AttributeExpression
+	AttributeOperator
+	AwaitExpression
+	BinaryOperator
+	BindingElement
+	Block
+	BreakStatement
+	CallExpression
+	CatchClause
+	ClassDeclaration
+	ClassName
+	CommentBlock
+	CommentLine
+	ContinueStatement
+	CurryExpression
+	DoUntilStatement
+	DoWhileStatement
+	ElseStatement
+	ElseIfStatement
+	EnumDeclaration
+	EnumExpression
+	EnumMember
+	ExportAlias
+	ExportDeclaration
+	ExternDeclaration
+	FieldDeclaration
+	ForFromStatement
+	ForInStatement
+	ForOfStatement
+	ForRangeStatement
+	FunctionDeclaration
+	FunctionExpression
+	Identifier
+	IfExpression
+	IfStatement
+	ImplementDeclaration
+	ImportDeclaration
+	ImportDeclarator
+	ImportReference
+	ImportSpecifier
+	ImportWildcardSpecifier
+	Literal
+	MemberExpression
+	MemberReference
+	MethodAliasDeclaration
+	MethodDeclaration
+	MethodLinkDeclaration
+	MixinDeclaration
+	Module
+	NumericExpression
+	ObjectBinding
+	ObjectExpression
+	ObjectMember
+	OmittedExpression
+	Parameter
+	PolyadicOperator
+	RegularExpression
+	RequireDeclaration
+	ReturnStatement
+	SurrogateDeclaration
+	SwitchClause
+	SwitchConditionArray
+	SwitchConditionEnum
+	SwitchConditionObject
+	SwitchConditionRange
+	SwitchConditionType
+	SwitchExpression
+	SwitchStatement
+	SwitchTypeCast
+	TemplateExpression
+	TernaryConditionalExpression
+	ThrowStatement
+	TraitDeclaration
+	TryStatement
+	TypeAliasDeclaration
+	TypeReference
+	UnaryExpression
+	UnlessExpression
+	UnlessStatement
+	UntilStatement
+	UnionType
+	VariableDeclaration
+	VariableDeclarator
+	VariableExpression
+	WhileStatement
+} // }}}
+
+export enum MemberModifier { // {{{
+	Private = 2
+	Protected
+	Public
+	Static
+} // }}}
+
+export enum ParameterModifier { // {{{
+	Member = 1
+	Rest
+} // }}}
+
+export enum ScopeModifier {
+	Argument = 1
+	Null
+	This
+}
+
+export enum UnaryOperator { // {{{
+	BitwiseNot = 1
+	DecrementPostfix
+	DecrementPrefix
+	Existential
+	IncrementPostfix
+	IncrementPrefix
+	Negation
+	Negative
+	New
+	Spread
+} // }}}
+
+export enum VariableModifier {
+	Const = 1
+	Let
+}
