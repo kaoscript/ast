@@ -1,7 +1,7 @@
 {
 	"name": "@kaoscript/ast",
 	"description": "Declares the types used to represent syntax trees for Kaoscript language.",
-	"version": "0.1.0",
+	"version": "0.1.1",
 	"author": {
 		"name": "Baptiste Augrain",
 		"email": "daiyam@zokugun.org"
@@ -19,7 +19,7 @@
 			"url": "http://www.opensource.org/licenses/mit-license.php"
 		}
 	],
-	"main": "build/ast.js"
+	"main": "build/ast.js",
 	"files": [
 		"build",
 		"src"
