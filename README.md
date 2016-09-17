@@ -1,7 +1,23 @@
-@kaoscript/ast
+[@kaoscript/ast](https://github.com/kaoscript/ast)
 =================================================================
 
-The package *@kaoscript/ast* declares the types used to represent syntax trees for Kaoscript language.
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE)
+![Dependencies](https://img.shields.io/david/kaoscript/ast.svg)
+
+Enumerate types used in the syntax trees of kaoscript language.
+
+Documentation available at [kaoscript](https://github.com/kaoscript/kaoscript).
+
+Changelog
+---------
+
+### 0.1.2
+
+- compilation
+
+### 0.1.1
+
+- initial release
 
 License
 -------
