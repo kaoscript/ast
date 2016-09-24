@@ -1,6 +1,6 @@
 /**
  * ast.ks
- * Version 0.1.0
+ * Version 0.2.0
  * September 13th, 2016
  *
  * Copyright (c) 2016 Baptiste Augrain
@@ -21,6 +21,7 @@ export enum AssignmentOperator { // {{{
 	Existential
 	Modulo
 	Multiplication
+	NullCoalescing
 	Subtraction
 } // }}}
 
@@ -35,7 +36,6 @@ export enum BinaryOperator { // {{{
 	BitwiseXor
 	Division
 	Equality
-	Existential
 	GreaterThan
 	GreaterThanOrEqual
 	Inequality
@@ -43,6 +43,7 @@ export enum BinaryOperator { // {{{
 	LessThanOrEqual
 	Modulo
 	Multiplication
+	NullCoalescing
 	Or
 	Subtraction
 	TypeCast
@@ -88,6 +89,7 @@ export enum Kind { // {{{
 	ExportAlias
 	ExportDeclaration
 	ExternDeclaration
+	ExternOrRequireDeclaration
 	FieldDeclaration
 	ForFromStatement
 	ForInStatement
@@ -121,6 +123,7 @@ export enum Kind { // {{{
 	PolyadicOperator
 	RegularExpression
 	RequireDeclaration
+	RequireOrExternDeclaration
 	ReturnStatement
 	SurrogateDeclaration
 	SwitchClause

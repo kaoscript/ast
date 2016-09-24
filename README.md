@@ -11,9 +11,9 @@ Documentation available at [kaoscript](https://github.com/kaoscript/kaoscript).
 Changelog
 ---------
 
-### 0.1.2
+### 0.2.0
 
-- compilation
+- add null coalescing operators (??, ??=)
 
 ### 0.1.1
 
