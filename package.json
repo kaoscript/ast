@@ -31,7 +31,7 @@
 	"dependencies": {
 	},
 	"devDependencies": {
-		"kaoscript": "0.2.x"
+		"kaoscript": ">=0.2 <1"
 	},
 	"scripts": {
 		"compile": "kaoscript -c -o build src/ast.ks"
