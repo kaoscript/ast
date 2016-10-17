@@ -1,6 +1,6 @@
 /**
  * ast.ks
- * Version 0.2.0
+ * Version 0.3.0
  * September 13th, 2016
  *
  * Copyright (c) 2016 Baptiste Augrain
@@ -106,6 +106,7 @@ export enum Kind { // {{{
 	ImportReference
 	ImportSpecifier
 	ImportWildcardSpecifier
+	IncludeDeclaration
 	Literal
 	MemberExpression
 	MemberReference
