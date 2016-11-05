@@ -26,8 +26,8 @@ export enum AssignmentOperator { // {{{
 } // }}}
 
 export enum BinaryOperator { // {{{
-	And = 1
-	Addition
+	Addition = 1
+	And
 	Assignment
 	BitwiseAnd
 	BitwiseLeftShift

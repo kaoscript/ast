@@ -16,8 +16,8 @@ module.exports = function() {
 		Subtraction: 13
 	};
 	var BinaryOperator = {
-		And: 1,
-		Addition: 2,
+		Addition: 1,
+		And: 2,
 		Assignment: 3,
 		BitwiseAnd: 4,
 		BitwiseLeftShift: 5,
