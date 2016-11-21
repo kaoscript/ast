@@ -107,6 +107,7 @@ export enum Kind { // {{{
 	ImportSpecifier
 	ImportWildcardSpecifier
 	IncludeDeclaration
+	IncludeOnceDeclaration
 	Literal
 	MemberExpression
 	MemberReference
