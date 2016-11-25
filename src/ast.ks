@@ -51,7 +51,7 @@ export enum BinaryOperator { // {{{
 } // }}}
 
 export enum ClassModifier {
-	Final = 1
+	Sealed = 1
 }
 
 export enum FunctionModifier { // {{{

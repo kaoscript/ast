@@ -40,7 +40,7 @@ module.exports = function() {
 		TypeCheck: 22
 	};
 	var ClassModifier = {
-		Final: 1
+		Sealed: 1
 	};
 	var FunctionModifier = {
 		Async: 1
