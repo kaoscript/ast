@@ -50,10 +50,6 @@ export enum BinaryOperator { // {{{
 	TypeCheck
 } // }}}
 
-export enum ClassModifier {
-	Sealed = 1
-}
-
 export enum FunctionModifier { // {{{
 	Async = 1
 } // }}}

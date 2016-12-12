@@ -39,9 +39,6 @@ module.exports = function() {
 		TypeCast: 21,
 		TypeCheck: 22
 	};
-	var ClassModifier = {
-		Sealed: 1
-	};
 	var FunctionModifier = {
 		Async: 1
 	};
@@ -175,7 +172,6 @@ module.exports = function() {
 	return {
 		AssignmentOperator: AssignmentOperator,
 		BinaryOperator: BinaryOperator,
-		ClassModifier: ClassModifier,
 		FunctionModifier: FunctionModifier,
 		Kind: Kind,
 		MemberModifier: MemberModifier,
