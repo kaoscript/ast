@@ -36,8 +36,9 @@ module.exports = function() {
 		NullCoalescing: 18,
 		Or: 19,
 		Subtraction: 20,
-		TypeCast: 21,
-		TypeCheck: 22
+		TypeCasting: 21,
+		TypeEquality: 22,
+		TypeInequality: 23
 	};
 	var FunctionModifier = {
 		Async: 1
@@ -120,7 +121,7 @@ module.exports = function() {
 		SwitchConditionType: 75,
 		SwitchExpression: 76,
 		SwitchStatement: 77,
-		SwitchTypeCast: 78,
+		SwitchTypeCasting: 78,
 		TemplateExpression: 79,
 		TernaryConditionalExpression: 80,
 		ThrowStatement: 81,

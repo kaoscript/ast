@@ -46,8 +46,9 @@ export enum BinaryOperator { // {{{
 	NullCoalescing
 	Or
 	Subtraction
-	TypeCast
-	TypeCheck
+	TypeCasting
+	TypeEquality
+	TypeInequality
 } // }}}
 
 export enum FunctionModifier { // {{{
@@ -132,7 +133,7 @@ export enum Kind { // {{{
 	SwitchConditionType
 	SwitchExpression
 	SwitchStatement
-	SwitchTypeCast
+	SwitchTypeCasting
 	TemplateExpression
 	TernaryConditionalExpression
 	ThrowStatement
