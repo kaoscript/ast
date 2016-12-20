@@ -75,7 +75,9 @@ export enum Kind { // {{{
 	CommentBlock
 	CommentLine
 	ContinueStatement
+	CreateExpression
 	CurryExpression
+	DestroyExpression
 	DoUntilStatement
 	DoWhileStatement
 	ElseStatement
@@ -179,7 +181,6 @@ export enum UnaryOperator { // {{{
 	IncrementPrefix
 	Negation
 	Negative
-	New
 	Spread
 } // }}}
 
