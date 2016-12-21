@@ -65,7 +65,7 @@ module.exports = function() {
 		ContinueStatement: 19,
 		CreateExpression: 20,
 		CurryExpression: 21,
-		DestroyExpression: 22,
+		DestroyStatement: 22,
 		DoUntilStatement: 23,
 		DoWhileStatement: 24,
 		ElseStatement: 25,

@@ -77,7 +77,7 @@ export enum Kind { // {{{
 	ContinueStatement
 	CreateExpression
 	CurryExpression
-	DestroyExpression
+	DestroyStatement
 	DoUntilStatement
 	DoWhileStatement
 	ElseStatement
