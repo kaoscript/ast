@@ -8,17 +8,6 @@ Enumerate types used in the syntax trees of kaoscript language.
 
 Documentation available at [kaoscript](https://github.com/kaoscript/kaoscript).
 
-Changelog
----------
-
-### 0.2.0
-
-- add null coalescing operators (??, ??=)
-
-### 0.1.1
-
-- initial release
-
 License
 -------
 
