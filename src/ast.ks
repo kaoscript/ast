@@ -1,14 +1,12 @@
 /**
  * ast.ks
- * Version 0.3.0
+ * Version 0.4.0
  * September 13th, 2016
  *
  * Copyright (c) 2016 Baptiste Augrain
  * Licensed under the MIT license.
  * http://www.opensource.org/licenses/mit-license.php
  **/
-#![cfg(variables='es5')]
-
 export enum AssignmentOperator { // {{{
 	Addition = 1
 	BitwiseAnd
@@ -107,6 +105,7 @@ export enum Kind { // {{{
 	ImportWildcardSpecifier
 	IncludeDeclaration
 	IncludeOnceDeclaration
+	LambdaExpression
 	Literal
 	MemberExpression
 	MemberReference

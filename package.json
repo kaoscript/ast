@@ -1,7 +1,7 @@
 {
 	"name": "@kaoscript/ast",
 	"description": "Enumerate types used in the syntax trees of kaoscript language.",
-	"version": "0.3.0",
+	"version": "0.4.0",
 	"author": {
 		"name": "Baptiste Augrain",
 		"email": "daiyam@zokugun.org"
@@ -21,7 +21,7 @@
 		}
 	],
 	"engines": {
-		"node": ">= 6.0.0"
+		"node": ">= 4.0.0"
 	},
 	"files": [
 		"build",
@@ -34,7 +34,7 @@
 		"kaoscript": ">=0.2 <1"
 	},
 	"scripts": {
-		"compile": "kaoscript -c -o build src/ast.ks"
+		"compile": "kaoscript -c -t es5 -o build src/ast.ks"
 	},
 	"kaoscript": {
 		"main": "src/ast.ks"
