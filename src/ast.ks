@@ -137,6 +137,7 @@ export enum Kind { // {{{
 	SwitchTypeCasting
 	TemplateExpression
 	TernaryConditionalExpression
+	ThisExpression
 	ThrowStatement
 	TraitDeclaration
 	TryStatement
