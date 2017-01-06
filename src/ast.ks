@@ -108,7 +108,6 @@ export enum Kind { // {{{
 	LambdaExpression
 	Literal
 	MemberExpression
-	MemberReference
 	MethodAliasDeclaration
 	MethodDeclaration
 	MethodLinkDeclaration
