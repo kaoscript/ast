@@ -12,8 +12,9 @@ module.exports = function() {
 		Existential: 9,
 		Modulo: 10,
 		Multiplication: 11,
-		NullCoalescing: 12,
-		Subtraction: 13
+		NonExistential: 12,
+		NullCoalescing: 13,
+		Subtraction: 14
 	};
 	var BinaryOperator = {
 		Addition: 1,

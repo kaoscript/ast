@@ -19,6 +19,7 @@ export enum AssignmentOperator { // {{{
 	Existential
 	Modulo
 	Multiplication
+	NonExistential
 	NullCoalescing
 	Subtraction
 } // }}}
