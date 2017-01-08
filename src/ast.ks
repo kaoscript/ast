@@ -1,6 +1,6 @@
 /**
  * ast.ks
- * Version 0.4.0
+ * Version 0.5.0
  * September 13th, 2016
  *
  * Copyright (c) 2016 Baptiste Augrain
@@ -48,6 +48,11 @@ export enum BinaryOperator { // {{{
 	TypeCasting
 	TypeEquality
 	TypeInequality
+} // }}}
+
+export enum ClassModifier { // {{{
+	Abstract = 1
+	Sealed
 } // }}}
 
 export enum FunctionModifier { // {{{
@@ -155,10 +160,14 @@ export enum Kind { // {{{
 } // }}}
 
 export enum MemberModifier { // {{{
-	Private = 2
+	Private = 3
 	Protected
 	Public
 	Static
+} // }}}
+
+export enum MethodModifier { // {{{
+	Abstract = 2
 } // }}}
 
 export enum ParameterModifier { // {{{
