@@ -1,13 +1,13 @@
 /**
  * ast.ks
- * Version 0.5.0
+ * Version 0.6.0
  * September 13th, 2016
  *
  * Copyright (c) 2016 Baptiste Augrain
  * Licensed under the MIT license.
  * http://www.opensource.org/licenses/mit-license.php
  **/
-export enum AssignmentOperator { // {{{
+export enum AssignmentOperatorKind { // {{{
 	Addition = 1
 	BitwiseAnd
 	BitwiseLeftShift
@@ -24,7 +24,7 @@ export enum AssignmentOperator { // {{{
 	Subtraction
 } // }}}
 
-export enum BinaryOperator { // {{{
+export enum BinaryOperatorKind { // {{{
 	Addition = 1
 	And
 	Assignment
@@ -50,16 +50,19 @@ export enum BinaryOperator { // {{{
 	TypeInequality
 } // }}}
 
-export enum ClassModifier { // {{{
+export enum ModifierKind {
 	Abstract = 1
+	Alias
+	Async
+	Private
+	Protected
+	Public
+	Rest
 	Sealed
-} // }}}
+	Static
+}
 
-export enum FunctionModifier { // {{{
-	Async = 1
-} // }}}
-
-export enum Kind { // {{{
+export enum NodeKind { // {{{
 	ArrayBinding = 1
 	ArrayComprehension
 	ArrayExpression
@@ -78,14 +81,13 @@ export enum Kind { // {{{
 	ClassName
 	CommentBlock
 	CommentLine
+	ConditionalExpression
 	ContinueStatement
 	CreateExpression
 	CurryExpression
 	DestroyStatement
 	DoUntilStatement
 	DoWhileStatement
-	ElseStatement
-	ElseIfStatement
 	EnumDeclaration
 	EnumExpression
 	EnumMember
@@ -129,7 +131,9 @@ export enum Kind { // {{{
 	RegularExpression
 	RequireDeclaration
 	RequireOrExternDeclaration
+	RequireOrImportDeclaration
 	ReturnStatement
+	SequenceExpression
 	SurrogateDeclaration
 	SwitchClause
 	SwitchConditionArray
@@ -141,7 +145,6 @@ export enum Kind { // {{{
 	SwitchStatement
 	SwitchTypeCasting
 	TemplateExpression
-	TernaryConditionalExpression
 	ThisExpression
 	ThrowStatement
 	TraitDeclaration
@@ -159,29 +162,13 @@ export enum Kind { // {{{
 	WhileStatement
 } // }}}
 
-export enum MemberModifier { // {{{
-	Private = 3
-	Protected
-	Public
-	Static
-} // }}}
-
-export enum MethodModifier { // {{{
-	Abstract = 2
-} // }}}
-
-export enum ParameterModifier { // {{{
-	Member = 1
-	Rest
-} // }}}
-
-export enum ScopeModifier {
+export enum ScopeKind {
 	Argument = 1
 	Null
 	This
 }
 
-export enum UnaryOperator { // {{{
+export enum UnaryOperatorKind { // {{{
 	BitwiseNot = 1
 	DecrementPostfix
 	DecrementPrefix
@@ -192,8 +179,3 @@ export enum UnaryOperator { // {{{
 	Negative
 	Spread
 } // }}}
-
-export enum VariableModifier {
-	Const = 1
-	Let
-}
