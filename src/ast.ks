@@ -71,7 +71,7 @@ export enum NodeKind { // {{{
 	AttributeExpression
 	AttributeOperator
 	AwaitExpression
-	BinaryOperator
+	BinaryExpression
 	BindingElement
 	Block
 	BreakStatement
@@ -127,7 +127,7 @@ export enum NodeKind { // {{{
 	ObjectMember
 	OmittedExpression
 	Parameter
-	PolyadicOperator
+	PolyadicExpression
 	RegularExpression
 	RequireDeclaration
 	RequireOrExternDeclaration
