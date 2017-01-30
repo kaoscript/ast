@@ -69,7 +69,7 @@ export enum NodeKind { // {{{
 	ArrayRange
 	AttributeDeclaration
 	AttributeExpression
-	AttributeOperator
+	AttributeOperation
 	AwaitExpression
 	BinaryExpression
 	BindingElement
