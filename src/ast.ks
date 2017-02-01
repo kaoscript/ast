@@ -63,7 +63,8 @@ export enum ModifierKind {
 }
 
 export enum NodeKind { // {{{
-	ArrayBinding = 1
+	AccessorDeclaration = 1
+	ArrayBinding
 	ArrayComprehension
 	ArrayExpression
 	ArrayRange
@@ -121,6 +122,7 @@ export enum NodeKind { // {{{
 	MethodLinkDeclaration
 	MixinDeclaration
 	Module
+	MutatorDeclaration
 	NumericExpression
 	ObjectBinding
 	ObjectExpression
@@ -128,6 +130,7 @@ export enum NodeKind { // {{{
 	OmittedExpression
 	Parameter
 	PolyadicExpression
+	PropertyDeclaration
 	RegularExpression
 	RequireDeclaration
 	RequireOrExternDeclaration
