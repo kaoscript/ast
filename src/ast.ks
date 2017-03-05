@@ -52,14 +52,15 @@ export enum BinaryOperatorKind { // {{{
 
 export enum ModifierKind {
 	Abstract = 1
-	Alias
 	Async
 	Private
 	Protected
 	Public
 	Rest
 	Sealed
+	SetterAlias
 	Static
+	ThisAlias
 }
 
 export enum NodeKind { // {{{
