@@ -1,6 +1,6 @@
 /**
  * ast.ks
- * Version 0.6.0
+ * Version 0.7.0
  * September 13th, 2016
  *
  * Copyright (c) 2016 Baptiste Augrain
@@ -78,6 +78,7 @@ export enum NodeKind { // {{{
 	Block
 	BreakStatement
 	CallExpression
+	CallMacroExpression
 	CatchClause
 	ClassDeclaration
 	ClassName
@@ -118,12 +119,11 @@ export enum NodeKind { // {{{
 	LambdaExpression
 	Literal
 	MemberExpression
-	MethodAliasDeclaration
 	MethodDeclaration
-	MethodLinkDeclaration
 	MixinDeclaration
 	Module
 	MutatorDeclaration
+	NamespaceDeclaration
 	NumericExpression
 	ObjectBinding
 	ObjectExpression
