@@ -162,7 +162,6 @@ export enum NodeKind { // {{{
 	UnionType
 	VariableDeclaration
 	VariableDeclarator
-	VariableExpression
 	WhileStatement
 } // }}}
 
