@@ -118,6 +118,11 @@ export enum NodeKind { // {{{
 	IncludeOnceDeclaration
 	LambdaExpression
 	Literal
+	MacroDeclaration
+	MacroExpression
+	MacroParameter
+	MacroRule
+	MacroVariable
 	MemberExpression
 	MethodDeclaration
 	MixinDeclaration
@@ -164,6 +169,13 @@ export enum NodeKind { // {{{
 	VariableDeclarator
 	WhileStatement
 } // }}}
+
+export enum ReificationKind {
+	Arguments = 1
+	Block
+	Expression
+	Identifier
+}
 
 export enum ScopeKind {
 	Argument = 1
