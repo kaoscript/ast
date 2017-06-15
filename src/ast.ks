@@ -109,11 +109,12 @@ export enum NodeKind { // {{{
 	IfExpression
 	IfStatement
 	ImplementDeclaration
+	ImportArguments
 	ImportDeclaration
 	ImportDeclarator
+	ImportNamespaceSpecifier
 	ImportReference
 	ImportSpecifier
-	ImportWildcardSpecifier
 	IncludeDeclaration
 	IncludeOnceDeclaration
 	LambdaExpression
@@ -128,6 +129,7 @@ export enum NodeKind { // {{{
 	MixinDeclaration
 	Module
 	MutatorDeclaration
+	NamedArgument
 	NamespaceDeclaration
 	NumericExpression
 	ObjectBinding
