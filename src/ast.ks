@@ -53,6 +53,7 @@ export enum BinaryOperatorKind { // {{{
 export enum ModifierKind {
 	Abstract = 1
 	Async
+	AutoEvaluate
 	Private
 	Protected
 	Public
@@ -121,8 +122,6 @@ export enum NodeKind { // {{{
 	Literal
 	MacroDeclaration
 	MacroExpression
-	MacroParameter
-	MacroRule
 	MacroVariable
 	MemberExpression
 	MethodDeclaration
