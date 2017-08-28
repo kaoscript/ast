@@ -50,7 +50,13 @@ export enum BinaryOperatorKind { // {{{
 	TypeInequality
 } // }}}
 
-export enum ModifierKind {
+export enum MacroElementKind { // {{{
+	Expression = 1
+	Literal
+	NewLine
+} // }}}
+
+export enum ModifierKind { // {{{
 	Abstract = 1
 	Async
 	AutoEvaluate
@@ -62,7 +68,7 @@ export enum ModifierKind {
 	SetterAlias
 	Static
 	ThisAlias
-}
+} // }}}
 
 export enum NodeKind { // {{{
 	AccessorDeclaration = 1
@@ -122,7 +128,6 @@ export enum NodeKind { // {{{
 	Literal
 	MacroDeclaration
 	MacroExpression
-	MacroVariable
 	MemberExpression
 	MethodDeclaration
 	MixinDeclaration
@@ -171,18 +176,18 @@ export enum NodeKind { // {{{
 	WhileStatement
 } // }}}
 
-export enum ReificationKind {
+export enum ReificationKind { // {{{
 	Arguments = 1
 	Block
 	Expression
 	Identifier
-}
+} // }}}
 
-export enum ScopeKind {
+export enum ScopeKind { // {{{
 	Argument = 1
 	Null
 	This
-}
+} // }}}
 
 export enum UnaryOperatorKind { // {{{
 	BitwiseNot = 1
