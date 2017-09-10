@@ -101,8 +101,11 @@ export enum NodeKind { // {{{
 	EnumDeclaration
 	EnumExpression
 	EnumMember
-	ExportAlias
 	ExportDeclaration
+	ExportDeclarationSpecifier
+	ExportNamedSpecifier
+	ExportPropertiesSpecifier
+	ExportWildcardSpecifier
 	ExternDeclaration
 	ExternOrRequireDeclaration
 	FieldDeclaration
@@ -122,8 +125,8 @@ export enum NodeKind { // {{{
 	ImportNamespaceSpecifier
 	ImportReference
 	ImportSpecifier
+	IncludeAgainDeclaration
 	IncludeDeclaration
-	IncludeOnceDeclaration
 	LambdaExpression
 	Literal
 	MacroDeclaration
