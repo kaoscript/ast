@@ -114,6 +114,7 @@ export enum NodeKind { // {{{
 	ForOfStatement
 	ForRangeStatement
 	FunctionDeclaration
+	FunctionDeclarator
 	FunctionExpression
 	Identifier
 	IfExpression
@@ -162,6 +163,7 @@ export enum NodeKind { // {{{
 	SwitchExpression
 	SwitchStatement
 	SwitchTypeCasting
+	TaggedTemplateExpression
 	TemplateExpression
 	ThisExpression
 	ThrowStatement
