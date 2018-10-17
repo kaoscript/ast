@@ -114,7 +114,6 @@ export enum NodeKind { // {{{
 	ForOfStatement
 	ForRangeStatement
 	FunctionDeclaration
-	FunctionDeclarator
 	FunctionExpression
 	Identifier
 	IfExpression
