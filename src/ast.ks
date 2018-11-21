@@ -60,6 +60,7 @@ export enum ModifierKind { // {{{
 	Abstract = 1
 	Async
 	AutoEvaluate
+	Override
 	Private
 	Protected
 	Public
