@@ -25,7 +25,7 @@
 	},
 	"files": [
 		"lib",
-		"src"
+		"src/*.ks"
 	],
 	"main": "lib/ast.js",
 	"dependencies": {},
