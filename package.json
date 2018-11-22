@@ -28,8 +28,7 @@
 		"src"
 	],
 	"main": "lib/ast.js",
-	"dependencies": {
-	},
+	"dependencies": {},
 	"devDependencies": {
 		"kaoscript": ">=0.7 <1"
 	},
