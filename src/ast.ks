@@ -92,6 +92,7 @@ export enum NodeKind { // {{{
 	ClassName
 	CommentBlock
 	CommentLine
+	ComputedPropertyName
 	ConditionalExpression
 	ContinueStatement
 	CreateExpression
