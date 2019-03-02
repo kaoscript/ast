@@ -154,6 +154,7 @@ export enum NodeKind { // {{{
 	RequireOrImportDeclaration
 	ReturnStatement
 	SequenceExpression
+	ShorthandProperty
 	SurrogateDeclaration
 	SwitchClause
 	SwitchConditionArray
