@@ -98,6 +98,7 @@ export enum NodeKind { // {{{
 	CreateExpression
 	CurryExpression
 	DestroyStatement
+	DiscloseDeclaration
 	DoUntilStatement
 	DoWhileStatement
 	EnumDeclaration
