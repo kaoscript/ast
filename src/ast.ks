@@ -21,6 +21,8 @@ export enum AssignmentOperatorKind { // {{{
 	Multiplication
 	NonExistential
 	NullCoalescing
+	Power
+	Quotient
 	Subtraction
 } // }}}
 
@@ -33,6 +35,7 @@ export enum BinaryOperatorKind { // {{{
 	BitwiseOr
 	BitwiseRightShift
 	BitwiseXor
+	Divisible
 	Division
 	Equality
 	GreaterThan
@@ -44,6 +47,8 @@ export enum BinaryOperatorKind { // {{{
 	Multiplication
 	NullCoalescing
 	Or
+	Power
+	Quotient
 	Subtraction
 	TypeCasting
 	TypeEquality
@@ -92,6 +97,7 @@ export enum NodeKind { // {{{
 	ClassName
 	CommentBlock
 	CommentLine
+	ComparisonExpression
 	ComputedPropertyName
 	ConditionalExpression
 	ContinueStatement
@@ -206,4 +212,5 @@ export enum UnaryOperatorKind { // {{{
 	Negation
 	Negative
 	Spread
+	SquareRoot
 } // }}}
