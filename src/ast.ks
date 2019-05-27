@@ -21,7 +21,6 @@ export enum AssignmentOperatorKind { // {{{
 	Multiplication
 	NonExistential
 	NullCoalescing
-	Power
 	Quotient
 	Subtraction
 } // }}}
@@ -35,11 +34,11 @@ export enum BinaryOperatorKind { // {{{
 	BitwiseOr
 	BitwiseRightShift
 	BitwiseXor
-	Divisible
 	Division
 	Equality
 	GreaterThan
 	GreaterThanOrEqual
+	Implies
 	Inequality
 	LessThan
 	LessThanOrEqual
@@ -47,12 +46,12 @@ export enum BinaryOperatorKind { // {{{
 	Multiplication
 	NullCoalescing
 	Or
-	Power
 	Quotient
 	Subtraction
 	TypeCasting
 	TypeEquality
 	TypeInequality
+	Xor
 } // }}}
 
 export enum MacroElementKind { // {{{
@@ -212,5 +211,4 @@ export enum UnaryOperatorKind { // {{{
 	Negation
 	Negative
 	Spread
-	SquareRoot
 } // }}}
