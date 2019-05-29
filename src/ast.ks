@@ -38,7 +38,7 @@ export enum BinaryOperatorKind { // {{{
 	Equality
 	GreaterThan
 	GreaterThanOrEqual
-	Implies
+	Imply
 	Inequality
 	LessThan
 	LessThanOrEqual
