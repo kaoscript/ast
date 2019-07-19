@@ -68,6 +68,7 @@ export enum ModifierKind { // {{{
 	Private
 	Protected
 	Public
+	Required
 	Rest
 	Sealed
 	SetterAlias
