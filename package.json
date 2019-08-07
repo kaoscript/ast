@@ -1,7 +1,7 @@
 {
 	"name": "@kaoscript/ast",
 	"description": "Enumerate types used in the syntax trees of kaoscript language.",
-	"version": "0.7.1",
+	"version": "0.8.0",
 	"author": {
 		"name": "Baptiste Augrain",
 		"email": "daiyam@zokugun.org"

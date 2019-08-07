@@ -1,6 +1,6 @@
 /**
  * ast.ks
- * Version 0.7.0
+ * Version 0.8.0
  * September 13th, 2016
  *
  * Copyright (c) 2016 Baptiste Augrain
