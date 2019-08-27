@@ -113,6 +113,7 @@ export enum NodeKind { // {{{
 	EnumMember
 	ExportDeclaration
 	ExportDeclarationSpecifier
+	ExportExclusionSpecifier
 	ExportNamedSpecifier
 	ExportPropertiesSpecifier
 	ExportWildcardSpecifier
@@ -132,6 +133,7 @@ export enum NodeKind { // {{{
 	ImportArgument
 	ImportDeclaration
 	ImportDeclarator
+	ImportExclusionSpecifier
 	ImportNamespaceSpecifier
 	ImportReference
 	ImportSpecifier
