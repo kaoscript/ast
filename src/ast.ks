@@ -126,6 +126,7 @@ export enum NodeKind { // {{{
 	ForRangeStatement
 	FunctionDeclaration
 	FunctionExpression
+	FusionType
 	Identifier
 	IfExpression
 	IfStatement
@@ -210,9 +211,11 @@ export enum UnaryOperatorKind { // {{{
 	DecrementPostfix
 	DecrementPrefix
 	Existential
+	ForcedTypeCasting
 	IncrementPostfix
 	IncrementPrefix
 	Negation
 	Negative
+	NullableTypeCasting
 	Spread
 } // }}}
