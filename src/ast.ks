@@ -64,11 +64,18 @@ export enum ModifierKind { // {{{
 	Abstract = 1
 	Async
 	AutoEvaluate
+	AutoTyping
 	Computed
+	Declarative
+	Disabled
+	Final
+	Nullable
 	Override
+	Overwrite
 	Private
 	Protected
 	Public
+	Rebindable
 	Required
 	Rest
 	Sealed
@@ -180,6 +187,7 @@ export enum NodeKind { // {{{
 	ThisExpression
 	ThrowStatement
 	TraitDeclaration
+	TryExpression
 	TryStatement
 	TypeAliasDeclaration
 	TypeReference
