@@ -69,13 +69,13 @@ export enum ModifierKind { // {{{
 	Declarative
 	Disabled
 	Final
+	Immutable
 	Nullable
 	Override
 	Overwrite
 	Private
 	Protected
 	Public
-	Rebindable
 	Required
 	Rest
 	Sealed
