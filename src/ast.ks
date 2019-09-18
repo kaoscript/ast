@@ -67,6 +67,7 @@ export enum ModifierKind { // {{{
 	AutoTyping
 	Computed
 	Declarative
+	Descending
 	Disabled
 	Final
 	Immutable
