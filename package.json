@@ -30,7 +30,7 @@
 	"main": "lib/ast.js",
 	"dependencies": {},
 	"devDependencies": {
-		"kaoscript": ">=0.7 <1"
+		"kaoscript": "github:kaoscript/kaoscript"
 	},
 	"scripts": {
 		"build": "kaoscript -c -t ecma-v5 -o lib src/ast.ks"
