@@ -119,6 +119,7 @@ export enum NodeKind { // {{{
 	EnumDeclaration
 	EnumExpression
 	EnumMember
+	ExclusionType
 	ExportDeclaration
 	ExportDeclarationSpecifier
 	ExportExclusionSpecifier
