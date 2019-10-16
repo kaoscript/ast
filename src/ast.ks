@@ -204,7 +204,7 @@ export enum NodeKind { // {{{
 } // }}}
 
 export enum ReificationKind { // {{{
-	Arguments = 1
+	Argument = 1
 	Expression
 	Join
 	Statement
