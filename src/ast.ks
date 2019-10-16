@@ -205,9 +205,10 @@ export enum NodeKind { // {{{
 
 export enum ReificationKind { // {{{
 	Arguments = 1
-	Block
 	Expression
-	Identifier
+	Join
+	Statement
+	Write
 } // }}}
 
 export enum ScopeKind { // {{{
