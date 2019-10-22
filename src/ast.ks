@@ -64,6 +64,7 @@ export enum ModifierKind { // {{{
 	Abstract = 1
 	Async
 	AutoEvaluate
+	Autofill
 	AutoTyping
 	Computed
 	Declarative
