@@ -72,6 +72,7 @@ export enum ModifierKind { // {{{
 	Disabled
 	Final
 	Immutable
+	Internal
 	Nullable
 	Override
 	Overwrite
@@ -129,6 +130,7 @@ export enum NodeKind { // {{{
 	ExportWildcardSpecifier
 	ExternDeclaration
 	ExternOrRequireDeclaration
+	FallthroughStatement
 	FieldDeclaration
 	ForFromStatement
 	ForInStatement
