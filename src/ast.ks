@@ -62,6 +62,7 @@ export enum MacroElementKind { // {{{
 
 export enum ModifierKind { // {{{
 	Abstract = 1
+	Array
 	Async
 	AutoEvaluate
 	Autofill
@@ -73,7 +74,9 @@ export enum ModifierKind { // {{{
 	Final
 	Immutable
 	Internal
+	Named
 	Nullable
+	Object
 	Override
 	Overwrite
 	Private
@@ -161,6 +164,7 @@ export enum NodeKind { // {{{
 	MixinDeclaration
 	Module
 	MutatorDeclaration
+	NamedArgument
 	NamespaceDeclaration
 	NumericExpression
 	ObjectBinding
@@ -177,6 +181,8 @@ export enum NodeKind { // {{{
 	ReturnStatement
 	SequenceExpression
 	ShorthandProperty
+	StructDeclaration
+	StructField
 	SurrogateDeclaration
 	SwitchClause
 	SwitchConditionArray
