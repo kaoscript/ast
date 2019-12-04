@@ -155,6 +155,7 @@ export enum NodeKind { // {{{
 	ImportSpecifier
 	IncludeAgainDeclaration
 	IncludeDeclaration
+	IncludeDeclarator
 	LambdaExpression
 	Literal
 	MacroDeclaration
