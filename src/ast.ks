@@ -74,6 +74,8 @@ export enum ModifierKind { // {{{
 	Final
 	Immutable
 	Internal
+	LateInit
+	LazyInit
 	Named
 	Nullable
 	Object
