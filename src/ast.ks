@@ -72,6 +72,7 @@ export enum ModifierKind { // {{{
 	Descending
 	Disabled
 	Final
+	Forced
 	Immutable
 	Internal
 	LateInit
