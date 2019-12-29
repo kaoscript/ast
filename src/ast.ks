@@ -90,6 +90,7 @@ export enum ModifierKind { // {{{
 	Sealed
 	SetterAlias
 	Static
+	Systemic
 	ThisAlias
 } // }}}
 
@@ -135,6 +136,7 @@ export enum NodeKind { // {{{
 	ExportPropertiesSpecifier
 	ExportWildcardSpecifier
 	ExternDeclaration
+	ExternOrImportDeclaration
 	ExternOrRequireDeclaration
 	FallthroughStatement
 	FieldDeclaration
