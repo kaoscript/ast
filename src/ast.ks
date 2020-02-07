@@ -62,7 +62,6 @@ export enum MacroElementKind { // {{{
 
 export enum ModifierKind { // {{{
 	Abstract = 1
-	Array
 	Async
 	AutoEvaluate
 	Autofill
@@ -79,7 +78,6 @@ export enum ModifierKind { // {{{
 	LazyInit
 	Named
 	Nullable
-	Object
 	Override
 	Overwrite
 	Private
@@ -207,6 +205,8 @@ export enum NodeKind { // {{{
 	TraitDeclaration
 	TryExpression
 	TryStatement
+	TupleDeclaration
+	TupleField
 	TypeAliasDeclaration
 	TypeReference
 	UnaryExpression
