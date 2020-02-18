@@ -40,8 +40,13 @@ export enum BinaryOperatorKind { // {{{
 	GreaterThanOrEqual
 	Imply
 	Inequality
+	JunctiveAnd
+	JunctiveOr
+	JunctiveXor
 	LessThan
 	LessThanOrEqual
+	Match
+	Mismatch
 	Modulo
 	Multiplication
 	NullCoalescing
