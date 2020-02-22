@@ -40,9 +40,6 @@ export enum BinaryOperatorKind { // {{{
 	GreaterThanOrEqual
 	Imply
 	Inequality
-	JunctiveAnd
-	JunctiveOr
-	JunctiveXor
 	LessThan
 	LessThanOrEqual
 	Match
@@ -164,6 +161,7 @@ export enum NodeKind { // {{{
 	IncludeAgainDeclaration
 	IncludeDeclaration
 	IncludeDeclarator
+	JunctionExpression
 	LambdaExpression
 	Literal
 	MacroDeclaration
