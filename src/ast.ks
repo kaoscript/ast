@@ -73,6 +73,7 @@ export enum ModifierKind { // {{{
 	Descending
 	Disabled
 	Final
+	Flagged
 	Forced
 	Immutable
 	Internal
@@ -127,7 +128,6 @@ export enum NodeKind { // {{{
 	DoWhileStatement
 	EnumDeclaration
 	EnumExpression
-	EnumMember
 	ExclusionType
 	ExportDeclaration
 	ExportDeclarationSpecifier
