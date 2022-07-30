@@ -1,6 +1,6 @@
 /**
  * ast.ks
- * Version 0.8.0
+ * Version 0.9.0
  * September 13th, 2016
  *
  * Copyright (c) 2016 Baptiste Augrain
@@ -67,11 +67,11 @@ export enum ModifierKind { // {{{
 	Async
 	AutoEvaluate
 	Autofill
-	AutoTyping
 	Computed
 	Declarative
 	Descending
 	Disabled
+	Dynamic
 	Final
 	Flagged
 	Forced
@@ -79,6 +79,7 @@ export enum ModifierKind { // {{{
 	Internal
 	LateInit
 	LazyInit
+	Mutable
 	Named
 	Nullable
 	Override
