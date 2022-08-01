@@ -72,7 +72,6 @@ export enum ModifierKind { // {{{
 	Descending
 	Disabled
 	Dynamic
-	Final
 	Flagged
 	Forced
 	Immutable
