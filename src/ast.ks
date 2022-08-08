@@ -168,6 +168,7 @@ export enum NodeKind { // {{{
 	MacroDeclaration
 	MacroExpression
 	MemberExpression
+	MethodAliasDeclaration
 	MethodDeclaration
 	MixinDeclaration
 	Module
