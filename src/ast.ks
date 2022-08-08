@@ -101,6 +101,7 @@ export enum NodeKind { // {{{
 	ArrayComprehension
 	ArrayExpression
 	ArrayRange
+	ArrayType
 	AttributeDeclaration
 	AttributeExpression
 	AttributeOperation
@@ -177,6 +178,7 @@ export enum NodeKind { // {{{
 	ObjectBinding
 	ObjectExpression
 	ObjectMember
+	ObjectType
 	OmittedExpression
 	Parameter
 	PolyadicExpression
