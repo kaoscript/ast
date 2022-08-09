@@ -97,6 +97,7 @@ export enum ModifierKind { // {{{
 
 export enum NodeKind { // {{{
 	AccessorDeclaration = 1
+	AliasDeclaration
 	ArrayBinding
 	ArrayComprehension
 	ArrayExpression
@@ -168,7 +169,6 @@ export enum NodeKind { // {{{
 	MacroDeclaration
 	MacroExpression
 	MemberExpression
-	MethodAliasDeclaration
 	MethodDeclaration
 	MixinDeclaration
 	Module
