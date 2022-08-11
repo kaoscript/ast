@@ -189,7 +189,6 @@ export enum NodeKind { // {{{
 	RequireOrExternDeclaration
 	RequireOrImportDeclaration
 	ReturnStatement
-	ReturnTypeReference
 	SequenceExpression
 	ShorthandProperty
 	StructDeclaration
