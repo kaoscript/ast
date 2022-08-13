@@ -190,6 +190,7 @@ export enum NodeKind { // {{{
 	RequireOrImportDeclaration
 	ReturnStatement
 	SequenceExpression
+	ShebangDeclaration
 	ShorthandProperty
 	StructDeclaration
 	StructField
