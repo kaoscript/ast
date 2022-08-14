@@ -9,37 +9,33 @@
  **/
 export enum AssignmentOperatorKind { // {{{
 	Addition = 1
-	BitwiseAnd
-	BitwiseLeftShift
-	BitwiseOr
-	BitwiseRightShift
-	BitwiseXor
+	And
 	Division
 	Equality
 	Existential
+	LeftShift
 	Modulo
 	Multiplication
 	NonExistential
 	NullCoalescing
+	Or
 	Quotient
+	RightShift
 	Subtraction
+	Xor
 } // }}}
 
 export enum BinaryOperatorKind { // {{{
 	Addition = 1
 	And
 	Assignment
-	BitwiseAnd
-	BitwiseLeftShift
-	BitwiseOr
-	BitwiseRightShift
-	BitwiseXor
 	Division
 	Equality
 	GreaterThan
 	GreaterThanOrEqual
 	Imply
 	Inequality
+	LeftShift
 	LessThan
 	LessThanOrEqual
 	Match
@@ -49,6 +45,7 @@ export enum BinaryOperatorKind { // {{{
 	NullCoalescing
 	Or
 	Quotient
+	RightShift
 	Subtraction
 	TypeCasting
 	TypeEquality
@@ -240,8 +237,7 @@ export enum ScopeKind { // {{{
 } // }}}
 
 export enum UnaryOperatorKind { // {{{
-	BitwiseNot = 1
-	DecrementPostfix
+	DecrementPostfix = 1
 	DecrementPrefix
 	Existential
 	ForcedTypeCasting
