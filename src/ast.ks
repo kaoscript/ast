@@ -77,9 +77,11 @@ export enum ModifierKind { // {{{
 	LazyInit
 	Mutable
 	Named
+	NameOnly
 	Nullable
 	Override
 	Overwrite
+	PositionOnly
 	Private
 	Protected
 	Public
