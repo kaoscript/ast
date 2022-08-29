@@ -11,15 +11,19 @@ export enum AssignmentOperatorKind { // {{{
 	Addition = 1
 	And
 	Division
-	Equality
+	Empty
+	EmptyCoalescing
+	Equals
 	Existential
 	LeftShift
 	Modulo
 	Multiplication
+	NonEmpty
 	NonExistential
 	NullCoalescing
 	Or
 	Quotient
+	Return
 	RightShift
 	Subtraction
 	Xor
@@ -30,6 +34,7 @@ export enum BinaryOperatorKind { // {{{
 	And
 	Assignment
 	Division
+	EmptyCoalescing
 	Equality
 	GreaterThan
 	GreaterThanOrEqual
@@ -239,14 +244,11 @@ export enum ScopeKind { // {{{
 } // }}}
 
 export enum UnaryOperatorKind { // {{{
-	DecrementPostfix = 1
-	DecrementPrefix
-	Existential
+	Existential = 1
 	ForcedTypeCasting
-	IncrementPostfix
-	IncrementPrefix
 	Negation
 	Negative
+	NonEmpty
 	NullableTypeCasting
 	Spread
 } // }}}
