@@ -101,7 +101,6 @@ export enum ModifierKind { // {{{
 
 export enum NodeKind { // {{{
 	AccessorDeclaration = 1
-	AliasDeclaration
 	ArrayBinding
 	ArrayComprehension
 	ArrayExpression
@@ -188,6 +187,8 @@ export enum NodeKind { // {{{
 	Parameter
 	PolyadicExpression
 	PropertyDeclaration
+	ProxyDeclaration
+	ProxyGroupDeclaration
 	RegularExpression
 	RequireDeclaration
 	RequireOrExternDeclaration
