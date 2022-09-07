@@ -95,7 +95,7 @@ export enum ModifierKind { // {{{
 	Sealed
 	SetterAlias
 	Static
-	Systemic
+	System
 	ThisAlias
 } // }}}
 
