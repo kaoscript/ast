@@ -74,7 +74,6 @@ export enum ModifierKind { // {{{
 	Descending
 	Disabled
 	Dynamic
-	Flagged
 	Forced
 	Immutable
 	Internal
@@ -112,6 +111,7 @@ export enum NodeKind { // {{{
 	AwaitExpression
 	BinaryExpression
 	BindingElement
+	BitmaskDeclaration
 	Block
 	BreakStatement
 	CallExpression
