@@ -185,6 +185,7 @@ export enum NodeKind { // {{{
 	ObjectType
 	OmittedExpression
 	Parameter
+	PassStatement
 	PolyadicExpression
 	PropertyDeclaration
 	ProxyDeclaration
@@ -227,7 +228,9 @@ export enum NodeKind { // {{{
 	UnionType
 	VariableDeclaration
 	VariableDeclarator
+	VariableStatement
 	WhileStatement
+	WithStatement
 } // }}}
 
 export enum ReificationKind { // {{{
