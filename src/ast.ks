@@ -187,7 +187,9 @@ export enum NodeKind { // {{{
 	Parameter
 	PassStatement
 	PolyadicExpression
+	PositionalArgument
 	PropertyDeclaration
+	PropertyType
 	ProxyDeclaration
 	ProxyGroupDeclaration
 	RegularExpression
