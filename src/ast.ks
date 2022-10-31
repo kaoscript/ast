@@ -66,14 +66,17 @@ export enum MacroElementKind { // {{{
 
 export enum ModifierKind { // {{{
 	Abstract = 1
+	Alias
 	Async
 	AutoEvaluate
 	Autofill
 	Computed
 	Declarative
+	Default
 	Descending
 	Disabled
 	Dynamic
+	Exclusion
 	Forced
 	Immutable
 	Internal
@@ -92,14 +95,15 @@ export enum ModifierKind { // {{{
 	Required
 	Rest
 	Sealed
-	SetterAlias
 	Static
 	System
 	ThisAlias
+	Wildcard
 } // }}}
 
 export enum NodeKind { // {{{
 	AccessorDeclaration = 1
+	Argument
 	ArrayBinding
 	ArrayComprehension
 	ArrayExpression
@@ -127,6 +131,7 @@ export enum NodeKind { // {{{
 	ContinueStatement
 	CreateExpression
 	CurryExpression
+	DeclarationSpecifier
 	DestroyStatement
 	DiscloseDeclaration
 	DoUntilStatement
@@ -135,11 +140,6 @@ export enum NodeKind { // {{{
 	EnumExpression
 	ExclusionType
 	ExportDeclaration
-	ExportDeclarationSpecifier
-	ExportExclusionSpecifier
-	ExportNamedSpecifier
-	ExportPropertiesSpecifier
-	ExportWildcardSpecifier
 	ExternDeclaration
 	ExternOrImportDeclaration
 	ExternOrRequireDeclaration
@@ -152,17 +152,13 @@ export enum NodeKind { // {{{
 	FunctionDeclaration
 	FunctionExpression
 	FusionType
+	GroupSpecifier
 	Identifier
 	IfExpression
 	IfStatement
 	ImplementDeclaration
-	ImportArgument
 	ImportDeclaration
 	ImportDeclarator
-	ImportExclusionSpecifier
-	ImportNamespaceSpecifier
-	ImportReference
-	ImportSpecifier
 	IncludeAgainDeclaration
 	IncludeDeclaration
 	IncludeDeclarator
@@ -177,6 +173,7 @@ export enum NodeKind { // {{{
 	Module
 	MutatorDeclaration
 	NamedArgument
+	NamedSpecifier
 	NamespaceDeclaration
 	NumericExpression
 	ObjectBinding
@@ -188,6 +185,7 @@ export enum NodeKind { // {{{
 	PassStatement
 	PolyadicExpression
 	PositionalArgument
+	PropertiesSpecifier
 	PropertyDeclaration
 	PropertyType
 	ProxyDeclaration
@@ -222,7 +220,9 @@ export enum NodeKind { // {{{
 	TupleDeclaration
 	TupleField
 	TypeAliasDeclaration
+	TypeList
 	TypeReference
+	TypedSpecifier
 	UnaryExpression
 	UnlessExpression
 	UnlessStatement
