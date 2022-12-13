@@ -70,6 +70,7 @@ export enum ModifierKind { // {{{
 	Async
 	AutoEvaluate
 	Autofill
+	Ballpark
 	Computed
 	Declarative
 	Default
@@ -191,6 +192,7 @@ export enum NodeKind { // {{{
 	ProxyDeclaration
 	ProxyGroupDeclaration
 	RegularExpression
+	RepeatStatement
 	RequireDeclaration
 	RequireOrExternDeclaration
 	RequireOrImportDeclaration
