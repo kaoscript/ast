@@ -67,6 +67,7 @@ export enum MacroElementKind { // {{{
 export enum ModifierKind { // {{{
 	Abstract = 1
 	Alias
+	Ascending
 	Async
 	AutoEvaluate
 	Autofill
@@ -168,6 +169,15 @@ export enum NodeKind { // {{{
 	Literal
 	MacroDeclaration
 	MacroExpression
+	MatchClause
+	MatchConditionArray
+	MatchConditionEnum
+	MatchConditionObject
+	MatchConditionRange
+	MatchConditionType
+	MatchExpression
+	MatchStatement
+	MatchTypeCasting
 	MemberExpression
 	MethodDeclaration
 	MixinDeclaration
@@ -203,15 +213,6 @@ export enum NodeKind { // {{{
 	StructDeclaration
 	StructField
 	SurrogateDeclaration
-	SwitchClause
-	SwitchConditionArray
-	SwitchConditionEnum
-	SwitchConditionObject
-	SwitchConditionRange
-	SwitchConditionType
-	SwitchExpression
-	SwitchStatement
-	SwitchTypeCasting
 	TaggedTemplateExpression
 	TemplateExpression
 	ThisExpression
