@@ -121,7 +121,6 @@ export enum NodeKind { // {{{
 	Block
 	BreakStatement
 	CallExpression
-	CallMacroExpression
 	CatchClause
 	ClassDeclaration
 	ClassName
