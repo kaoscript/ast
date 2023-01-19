@@ -84,6 +84,7 @@ export enum ModifierKind { // {{{
 	Internal
 	LateInit
 	LazyInit
+	MultiLine
 	Mutable
 	Named
 	NameOnly
