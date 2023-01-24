@@ -120,6 +120,7 @@ export enum NodeKind { // {{{
 	BindingElement
 	BitmaskDeclaration
 	Block
+	BlockStatement
 	BreakStatement
 	CallExpression
 	CatchClause
