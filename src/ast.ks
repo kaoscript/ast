@@ -172,13 +172,11 @@ export enum NodeKind { // {{{
 	MacroExpression
 	MatchClause
 	MatchConditionArray
-	MatchConditionEnum
 	MatchConditionObject
 	MatchConditionRange
 	MatchConditionType
 	MatchExpression
 	MatchStatement
-	MatchTypeCasting
 	MemberExpression
 	MethodDeclaration
 	MixinDeclaration
@@ -256,6 +254,7 @@ export enum ScopeKind { // {{{
 export enum UnaryOperatorKind { // {{{
 	Existential = 1
 	ForcedTypeCasting
+	Implicit
 	Negation
 	Negative
 	NonEmpty
