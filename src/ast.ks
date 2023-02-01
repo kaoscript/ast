@@ -7,7 +7,7 @@
  * Licensed under the MIT license.
  * http://www.opensource.org/licenses/mit-license.php
  **/
-export enum AssignmentOperatorKind { // {{{
+export enum AssignmentOperatorKind { # {{{
 	Addition = 1
 	And
 	Division
@@ -27,9 +27,9 @@ export enum AssignmentOperatorKind { // {{{
 	RightShift
 	Subtraction
 	Xor
-} // }}}
+} # }}}
 
-export enum BinaryOperatorKind { // {{{
+export enum BinaryOperatorKind { # {{{
 	Addition = 1
 	And
 	Assignment
@@ -56,15 +56,15 @@ export enum BinaryOperatorKind { // {{{
 	TypeEquality
 	TypeInequality
 	Xor
-} // }}}
+} # }}}
 
-export enum MacroElementKind { // {{{
+export enum MacroElementKind { # {{{
 	Expression = 1
 	Literal
 	NewLine
-} // }}}
+} # }}}
 
-export enum ModifierKind { // {{{
+export enum ModifierKind { # {{{
 	Abstract = 1
 	Alias
 	Ascending
@@ -102,9 +102,9 @@ export enum ModifierKind { // {{{
 	System
 	ThisAlias
 	Wildcard
-} // }}}
+} # }}}
 
-export enum NodeKind { // {{{
+export enum NodeKind { # {{{
 	AccessorDeclaration = 1
 	Argument
 	ArrayBinding
@@ -137,6 +137,7 @@ export enum NodeKind { // {{{
 	DeclarationSpecifier
 	DestroyStatement
 	DiscloseDeclaration
+	DisruptiveExpression
 	DoUntilStatement
 	DoWhileStatement
 	EnumDeclaration
@@ -193,6 +194,7 @@ export enum NodeKind { // {{{
 	OmittedExpression
 	Parameter
 	PassStatement
+	PickStatement
 	PolyadicExpression
 	PositionalArgument
 	PropertiesSpecifier
@@ -200,11 +202,13 @@ export enum NodeKind { // {{{
 	PropertyType
 	ProxyDeclaration
 	ProxyGroupDeclaration
+	Reference
 	RegularExpression
 	RepeatStatement
 	RequireDeclaration
 	RequireOrExternDeclaration
 	RequireOrImportDeclaration
+	RestrictiveExpression
 	ReturnStatement
 	SequenceExpression
 	ShebangDeclaration
@@ -226,7 +230,6 @@ export enum NodeKind { // {{{
 	TypeReference
 	TypedSpecifier
 	UnaryExpression
-	UnlessExpression
 	UnlessStatement
 	UntilStatement
 	UnionType
@@ -235,23 +238,28 @@ export enum NodeKind { // {{{
 	VariableStatement
 	WhileStatement
 	WithStatement
-} // }}}
+} # }}}
 
-export enum ReificationKind { // {{{
+export enum ReificationKind { # {{{
 	Argument = 1
 	Expression
 	Join
 	Statement
 	Write
-} // }}}
+} # }}}
 
-export enum ScopeKind { // {{{
+export enum RestrictiveOperatorKind { # {{{
+	If
+	Unless
+} # }}}
+
+export enum ScopeKind { # {{{
 	Argument = 1
 	Null
 	This
-} // }}}
+} # }}}
 
-export enum UnaryOperatorKind { // {{{
+export enum UnaryOperatorKind { # {{{
 	Existential = 1
 	ForcedTypeCasting
 	Implicit
@@ -260,4 +268,4 @@ export enum UnaryOperatorKind { // {{{
 	NonEmpty
 	NullableTypeCasting
 	Spread
-} // }}}
+} # }}}
