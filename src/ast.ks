@@ -123,6 +123,7 @@ export enum NodeKind { # {{{
 	BlockStatement
 	BreakStatement
 	CallExpression
+	CascadeExpression
 	CatchClause
 	ClassDeclaration
 	ClassName
