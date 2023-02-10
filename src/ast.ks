@@ -142,7 +142,6 @@ export enum NodeKind { # {{{
 	DoUntilStatement
 	DoWhileStatement
 	EnumDeclaration
-	EnumExpression
 	ExclusionType
 	ExportDeclaration
 	ExternDeclaration
