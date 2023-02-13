@@ -136,11 +136,11 @@ export enum NodeKind { # {{{
 	CreateExpression
 	CurryExpression
 	DeclarationSpecifier
-	DestroyStatement
 	DiscloseDeclaration
 	DisruptiveExpression
 	DoUntilStatement
 	DoWhileStatement
+	DropStatement
 	EnumDeclaration
 	ExclusionType
 	ExportDeclaration
