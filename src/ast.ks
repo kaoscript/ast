@@ -89,6 +89,7 @@ export enum ModifierKind { # {{{
 	Named
 	NameOnly
 	Nullable
+	Ordinal
 	Override
 	Overwrite
 	PositionOnly
@@ -195,6 +196,7 @@ export enum NodeKind { # {{{
 	Parameter
 	PassStatement
 	PickStatement
+	PlaceholderArgument
 	PolyadicExpression
 	PositionalArgument
 	PropertiesSpecifier
@@ -255,7 +257,6 @@ export enum RestrictiveOperatorKind { # {{{
 
 export enum ScopeKind { # {{{
 	Argument = 1
-	Null
 	This
 } # }}}
 
