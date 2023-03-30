@@ -88,6 +88,7 @@ export enum ModifierKind { # {{{
 	Mutable
 	Named
 	NameOnly
+	NonNullable
 	Nullable
 	Ordinal
 	Override
