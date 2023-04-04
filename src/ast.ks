@@ -149,6 +149,7 @@ export enum NodeKind { # {{{
 	ExternDeclaration
 	ExternOrImportDeclaration
 	ExternOrRequireDeclaration
+	ExpressionStatement
 	FallthroughStatement
 	FieldDeclaration
 	ForFromStatement
