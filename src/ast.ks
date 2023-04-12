@@ -135,14 +135,12 @@ export enum NodeKind { # {{{
 	ComputedPropertyName
 	ConditionalExpression
 	ContinueStatement
-	CreateExpression
 	CurryExpression
 	DeclarationSpecifier
 	DiscloseDeclaration
 	DisruptiveExpression
 	DoUntilStatement
 	DoWhileStatement
-	DropStatement
 	EnumDeclaration
 	ExclusionType
 	ExportDeclaration
