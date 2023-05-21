@@ -33,9 +33,11 @@ export enum BinaryOperatorKind { # {{{
 	Addition = 1
 	And
 	Assignment
+	BackwardPipeline
 	Division
 	EmptyCoalescing
 	Equality
+	ForwardPipeline
 	GreaterThan
 	GreaterThanOrEqual
 	Imply
@@ -79,6 +81,7 @@ export enum ModifierKind { # {{{
 	Disabled
 	Dynamic
 	Exclusion
+	Existential
 	Forced
 	Immutable
 	Internal
@@ -88,6 +91,7 @@ export enum ModifierKind { # {{{
 	Mutable
 	Named
 	NameOnly
+	NonEmpty
 	NonNullable
 	Nullable
 	Ordinal
@@ -100,6 +104,7 @@ export enum ModifierKind { # {{{
 	Required
 	Rest
 	Sealed
+	Spread
 	Static
 	System
 	ThisAlias
@@ -222,6 +227,7 @@ export enum NodeKind { # {{{
 	TemplateExpression
 	ThisExpression
 	ThrowStatement
+	TopicReference
 	TraitDeclaration
 	TryExpression
 	TryStatement
