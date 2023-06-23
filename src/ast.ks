@@ -200,7 +200,6 @@ export enum NodeKind { # {{{
 	OmittedExpression
 	Parameter
 	PassStatement
-	PickStatement
 	PlaceholderArgument
 	PolyadicExpression
 	PositionalArgument
@@ -218,6 +217,7 @@ export enum NodeKind { # {{{
 	RestrictiveExpression
 	ReturnStatement
 	SequenceExpression
+	SetStatement
 	ShebangDeclaration
 	ShorthandProperty
 	StructDeclaration
