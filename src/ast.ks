@@ -130,7 +130,6 @@ export enum NodeKind { # {{{
 	BlockStatement
 	BreakStatement
 	CallExpression
-	CascadeExpression
 	CatchClause
 	ClassDeclaration
 	ClassName
@@ -216,6 +215,7 @@ export enum NodeKind { # {{{
 	RequireOrImportDeclaration
 	RestrictiveExpression
 	ReturnStatement
+	RollingExpression
 	SequenceExpression
 	SetStatement
 	ShebangDeclaration
