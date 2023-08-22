@@ -73,6 +73,7 @@ export enum ModifierKind { # {{{
 	Async
 	AutoEvaluate
 	Autofill
+	AutoType
 	Ballpark
 	Computed
 	Declarative
@@ -238,6 +239,7 @@ export enum NodeKind { # {{{
 	TypeReference
 	TypedSpecifier
 	UnaryExpression
+	UnaryTypeExpression
 	UnlessStatement
 	UntilStatement
 	UnionType
@@ -275,4 +277,10 @@ export enum UnaryOperatorKind { # {{{
 	NonEmpty
 	NullableTypeCasting
 	Spread
+} # }}}
+
+export enum UnaryTypeOperatorKind { # {{{
+	NewInstance = 1
+	TypeOf
+	ValueOf
 } # }}}
