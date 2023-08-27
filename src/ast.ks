@@ -60,6 +60,13 @@ export enum BinaryOperatorKind { # {{{
 	Xor
 } # }}}
 
+export enum IterationKind { # {{{
+	Array
+	From
+	Object
+	Range
+} # }}}
+
 export enum MacroElementKind { # {{{
 	Expression = 1
 	Literal
@@ -155,10 +162,7 @@ export enum NodeKind { # {{{
 	ExpressionStatement
 	FallthroughStatement
 	FieldDeclaration
-	ForFromStatement
-	ForInStatement
-	ForOfStatement
-	ForRangeStatement
+	ForStatement
 	FunctionDeclaration
 	FunctionExpression
 	FusionType
