@@ -83,6 +83,7 @@ export enum ModifierKind { # {{{
 	AutoType
 	Ballpark
 	Computed
+	Constant
 	Declarative
 	Default
 	Descending
@@ -90,8 +91,8 @@ export enum ModifierKind { # {{{
 	Dynamic
 	Exclusion
 	Existential
+	Final
 	Forced
-	Immutable
 	Internal
 	LateInit
 	LazyInit
@@ -273,7 +274,8 @@ export enum ScopeKind { # {{{
 } # }}}
 
 export enum UnaryOperatorKind { # {{{
-	Existential = 1
+	Constant = 1
+	Existential
 	ForcedTypeCasting
 	Implicit
 	Negation
@@ -284,7 +286,9 @@ export enum UnaryOperatorKind { # {{{
 } # }}}
 
 export enum UnaryTypeOperatorKind { # {{{
-	NewInstance = 1
+	Constant = 1
+	Mutable
+	NewInstance
 	TypeOf
 	ValueOf
 } # }}}
