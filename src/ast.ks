@@ -275,6 +275,7 @@ export enum ScopeKind { # {{{
 
 export enum UnaryOperatorKind { # {{{
 	Constant = 1
+	Default
 	Existential
 	ForcedTypeCasting
 	Implicit
