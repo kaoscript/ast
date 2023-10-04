@@ -9,55 +9,64 @@
  **/
 export enum AssignmentOperatorKind { # {{{
 	Addition = 1
-	And
+	BitwiseAnd
+	BitwiseOr
+	BitwiseXor
+	BitwiseLeftShift
+	BitwiseRightShift
 	Division
 	Empty
 	EmptyCoalescing
 	Equals
 	Existential
-	LeftShift
+	LogicalAnd
+	LogicalOr
+	LogicalXor
 	Modulo
 	Multiplication
 	NonEmpty
 	NonExistential
 	NullCoalescing
-	Or
 	Quotient
 	Return
-	RightShift
 	Subtraction
-	Xor
 } # }}}
 
 export enum BinaryOperatorKind { # {{{
 	Addition = 1
-	And
 	Assignment
 	BackwardPipeline
+	BitwiseAnd
+	BitwiseOr
+	BitwiseXor
+	BitwiseLeftShift
+	BitwiseRightShift
 	Division
 	EmptyCoalescing
 	Equality
 	ForwardPipeline
 	GreaterThan
 	GreaterThanOrEqual
-	Imply
 	Inequality
-	LeftShift
+	JunctionAnd
+	JunctionOr
+	JunctionXor
 	LessThan
 	LessThanOrEqual
+	LogicalAnd
+	LogicalImply
+	LogicalOr
+	LogicalXor
 	Match
 	Mismatch
 	Modulo
 	Multiplication
 	NullCoalescing
-	Or
 	Quotient
-	RightShift
 	Subtraction
 	TypeCasting
 	TypeEquality
 	TypeInequality
-	Xor
 } # }}}
 
 export enum IterationKind { # {{{
@@ -251,6 +260,9 @@ export enum NodeKind { # {{{
 	VariableDeclaration
 	VariableDeclarator
 	VariableStatement
+	VariantDeclaration
+	VariantField
+	VariantType
 	WhileStatement
 	WithStatement
 } # }}}
@@ -274,12 +286,13 @@ export enum ScopeKind { # {{{
 } # }}}
 
 export enum UnaryOperatorKind { # {{{
-	Constant = 1
+	BitwiseNegation = 1
+	Constant
 	Default
 	Existential
 	ForcedTypeCasting
 	Implicit
-	Negation
+	LogicalNegation
 	Negative
 	NonEmpty
 	NullableTypeCasting
