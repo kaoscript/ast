@@ -87,6 +87,7 @@ export enum ModifierKind { # {{{
 	Alias
 	Ascending
 	Async
+	Assist
 	AutoEvaluate
 	Autofill
 	AutoType
@@ -235,6 +236,7 @@ export enum NodeKind { # {{{
 	SetStatement
 	ShebangDeclaration
 	ShorthandProperty
+	SpreadExpression
 	StructDeclaration
 	StructField
 	SurrogateDeclaration
