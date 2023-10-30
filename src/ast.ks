@@ -290,7 +290,6 @@ export enum ScopeKind { # {{{
 export enum UnaryOperatorKind { # {{{
 	BitwiseNegation = 1
 	Constant
-	Default
 	Existential
 	Implicit
 	LogicalNegation
