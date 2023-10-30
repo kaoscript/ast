@@ -292,13 +292,12 @@ export enum UnaryOperatorKind { # {{{
 	Constant
 	Default
 	Existential
-	ForcedTypeCasting
 	Implicit
 	LogicalNegation
 	Negative
 	NonEmpty
-	NullableTypeCasting
 	Spread
+	TypeFitting
 } # }}}
 
 export enum UnaryTypeOperatorKind { # {{{
