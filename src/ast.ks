@@ -132,7 +132,6 @@ export enum ModifierKind { # {{{
 
 export enum NodeKind { # {{{
 	AccessorDeclaration = 1
-	Argument
 	ArrayBinding
 	ArrayComprehension
 	ArrayExpression
@@ -237,6 +236,7 @@ export enum NodeKind { # {{{
 	ShebangDeclaration
 	ShorthandProperty
 	SpreadExpression
+	StatementList
 	StructDeclaration
 	StructField
 	SurrogateDeclaration
@@ -252,6 +252,7 @@ export enum NodeKind { # {{{
 	TupleField
 	TypeAliasDeclaration
 	TypeList
+	TypeParameter
 	TypeReference
 	TypedSpecifier
 	UnaryExpression
@@ -267,6 +268,14 @@ export enum NodeKind { # {{{
 	VariantType
 	WhileStatement
 	WithStatement
+
+	Argument = NamedArgument | PlaceholderArgument | PositionalArgument
+
+	Expression = ArrayExpression | BinaryExpression | CallExpression | ComparisonExpression | ConditionalExpression | CurryExpression | DisruptiveExpression | FunctionExpression | Identifier | IfExpression | JunctionExpression | LambdaExpression | Literal | MemberExpression | NamedArgument | NumericExpression | ObjectExpression | ObjectMember | PlaceholderArgument | PolyadicExpression | PositionalArgument | RegularExpression | RestrictiveExpression | RollingExpression | SequenceExpression | ShorthandProperty | SpreadExpression | TaggedTemplateExpression | TemplateExpression | ThisExpression | TopicReference | UnaryExpression
+
+	Statement = BitmaskDeclaration | BlockStatement | BreakStatement | ClassDeclaration | ContinueStatement | DoUntilStatement | DoWhileStatement | EnumDeclaration | ExportDeclaration | ExternDeclaration | ExternOrImportDeclaration | ExternOrRequireDeclaration | ExpressionStatement | FallthroughStatement | ForStatement | FunctionDeclaration | IfStatement | ImplementDeclaration | ImportDeclaration | IncludeAgainDeclaration | IncludeDeclaration | MacroDeclaration | MatchStatement | NamespaceDeclaration | PassStatement | RepeatStatement | RequireDeclaration | RequireOrExternDeclaration | RequireOrImportDeclaration | ReturnStatement | SetStatement | StructDeclaration | ThrowStatement | TraitDeclaration | TryStatement | TupleDeclaration | UnlessStatement | UntilStatement | VariableStatement | WhileStatement | WithStatement
+
+	Type = ArrayType | ExclusionType| FunctionExpression | FusionType | ObjectType | TypeReference
 } # }}}
 
 export enum ReificationKind { # {{{
