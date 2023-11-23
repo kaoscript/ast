@@ -164,6 +164,7 @@ export enum NodeKind { # {{{
 	DoUntilStatement
 	DoWhileStatement
 	EnumDeclaration
+	EnumValue
 	ExclusionType
 	ExportDeclaration
 	ExternDeclaration
@@ -238,7 +239,6 @@ export enum NodeKind { # {{{
 	SpreadExpression
 	StatementList
 	StructDeclaration
-	StructField
 	SurrogateDeclaration
 	TaggedTemplateExpression
 	TemplateExpression
