@@ -27,15 +27,15 @@
 		"lib",
 		"src/*.ks"
 	],
-	"main": "lib/ast.js",
+	"main": "lib/index.js",
 	"dependencies": {},
 	"devDependencies": {
 		"kaoscript": "^0.11.0"
 	},
 	"scripts": {
-		"build": "kaoscript -c -t ecma-v5 -o lib src/ast.ks"
+		"build": "kaoscript -c -t ecma-v6 -o lib src/index.ks"
 	},
 	"kaoscript": {
-		"main": "src/ast.ks"
+		"main": "src/index.ks"
 	}
 }
