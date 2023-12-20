@@ -52,7 +52,7 @@ type ModifierData = Range & {
 			arity: {
 				min: Number
 				max: Number
-			}
+			}?
 		}
 	}
 }

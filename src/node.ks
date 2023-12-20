@@ -140,11 +140,11 @@ enum NodeKind { # {{{
 
 	Argument = NamedArgument | PlaceholderArgument | PositionalArgument
 
-	ClassMember = FieldDeclaration | MethodDeclaration | PropertyDeclaration | ProxyDeclaration
+	ClassMember = FieldDeclaration | MacroDeclaration | MethodDeclaration | PropertyDeclaration | ProxyDeclaration | ProxyGroupDeclaration
 
 	Expression = ArrayBinding | ArrayComprehension | ArrayExpression | ArrayRange | AwaitExpression | BinaryExpression | CallExpression | ComparisonExpression | ConditionalExpression | CurryExpression | DisruptiveExpression | FunctionExpression | Identifier | IfExpression | JunctionExpression | LambdaExpression | Literal | MacroExpression | MatchExpression | MemberExpression | NamedArgument | NumericExpression | ObjectBinding | ObjectExpression | ObjectMember | PlaceholderArgument | PolyadicExpression | PositionalArgument | Reference | RegularExpression | RestrictiveExpression | RollingExpression | SequenceExpression | ShorthandProperty | SpreadExpression | TaggedTemplateExpression | TemplateExpression | ThisExpression | TopicReference | TryExpression | UnaryExpression
 
-	Statement = BitmaskDeclaration | BlockStatement | BreakStatement | ClassDeclaration | ContinueStatement | DoUntilStatement | DoWhileStatement | EnumDeclaration | ExportDeclaration | ExternDeclaration | ExternOrImportDeclaration | ExternOrRequireDeclaration | ExpressionStatement | FallthroughStatement | ForStatement | FunctionDeclaration | IfStatement | ImplementDeclaration | ImportDeclaration | IncludeAgainDeclaration | IncludeDeclaration | MacroDeclaration | MatchStatement | NamespaceDeclaration | PassStatement | RepeatStatement | RequireDeclaration | RequireOrExternDeclaration | RequireOrImportDeclaration | ReturnStatement | SetStatement | StructDeclaration | ThrowStatement | TraitDeclaration | TryStatement | TupleDeclaration | TypeAliasDeclaration | UnlessStatement | UntilStatement | VariableStatement | VariantDeclaration | WhileStatement | WithStatement
+	Statement = BitmaskDeclaration | BlockStatement | BreakStatement | ClassDeclaration | ContinueStatement | DiscloseDeclaration | DoUntilStatement | DoWhileStatement | EnumDeclaration | ExportDeclaration | ExternDeclaration | ExternOrImportDeclaration | ExternOrRequireDeclaration | ExpressionStatement | FallthroughStatement | ForStatement | FunctionDeclaration | IfStatement | ImplementDeclaration | ImportDeclaration | IncludeAgainDeclaration | IncludeDeclaration | MacroDeclaration | MatchStatement | NamespaceDeclaration | PassStatement | RepeatStatement | RequireDeclaration | RequireOrExternDeclaration | RequireOrImportDeclaration | ReturnStatement | SetStatement | StructDeclaration | ThrowStatement | TraitDeclaration | TryStatement | TupleDeclaration | TypeAliasDeclaration | UnlessStatement | UntilStatement | VariableStatement | VariantDeclaration | WhileStatement | WithStatement
 
 	Type = ArrayType | ExclusionType| FunctionExpression | FusionType | ObjectType | TypeReference | UnaryTypeExpression | UnionType | VariantType
 
@@ -201,7 +201,13 @@ type NodeData = Range & {
 		AwaitExpression {
 			modifiers: ModifierData[]
 			variables: NodeData(VariableDeclarator)[]?
-			operand: NodeData(Expression)?
+			operation: NodeData(Expression)?
+		}
+		BinaryExpression {
+			modifiers: ModifierData[]
+			operator: BinaryOperatorData
+			left: NodeData(Expression)?
+			right: NodeData(Expression, ArrayType, ObjectType, TypeReference)?
 		}
 		BindingElement {
 			modifiers: ModifierData[]
@@ -259,7 +265,7 @@ type NodeData = Range & {
 		}
 		ComparisonExpression {
 			modifiers: ModifierData[]
-			values: NodeData(Expression)[]
+			values: Array<NodeData(Expression) | BinaryOperatorData>
 		}
 		ComputedPropertyName {
 			expression: NodeData(Expression)
@@ -318,7 +324,7 @@ type NodeData = Range & {
 			modifiers: ModifierData[]
 			name: NodeData(Identifier)
 			value: NodeData(Expression)?
-			arguments: NodeData(Argument)[]?
+			arguments: NodeData(Argument, Expression)[]?
 		}
 		ExclusionType {
 			types: NodeData(Type)[]
@@ -400,7 +406,7 @@ type NodeData = Range & {
 		IfStatement {
 			attributes: NodeData(AttributeDeclaration)[]
 			condition: NodeData(Expression)?
-			declarations: NodeData(VariableDeclaration, Expression)[]?
+			declarations: NodeData(VariableDeclaration, Expression)[][]?
 			whenTrue: NodeData(Block, BreakStatement, ContinueStatement, ExpressionStatement, ReturnStatement, SetStatement, ThrowStatement)
 			whenFalse: NodeData(Block, IfStatement)?
 		}
@@ -420,7 +426,7 @@ type NodeData = Range & {
 			source: NodeData(Literal)
 			arguments: NodeData(NamedArgument, PositionalArgument)[]?
 			type: NodeData(DescriptiveType, TypeList)?
-			specifiers: NodeData(GroupSpecifier)[]
+			specifiers: NodeData(GroupSpecifier, NamedSpecifier)[]
 		}
 		IncludeAgainDeclaration {
 			attributes: NodeData(AttributeDeclaration)[]
@@ -458,7 +464,7 @@ type NodeData = Range & {
 		}
 		MacroExpression {
 			attributes: NodeData(AttributeDeclaration)[]
-			elements: MacroElementData(Expression, Literal)[]
+			elements: MacroElementData[]
 		}
 		MatchClause {
 			conditions: NodeData(Expression, MatchConditionArray, MatchConditionObject, MatchConditionRange, MatchConditionType)[]
@@ -508,7 +514,7 @@ type NodeData = Range & {
 		}
 		Module {
 			attributes: NodeData(AttributeDeclaration)[]
-			body: NodeData(Statement)[]
+			body: NodeData(Statement, ShebangDeclaration)[]
 		}
 		MutatorDeclaration {
 			body: NodeData(Block, Expression)?
@@ -527,7 +533,7 @@ type NodeData = Range & {
 			attributes: NodeData(AttributeDeclaration)[]
 			modifiers: ModifierData[]
 			name: NodeData(Identifier)
-			statements: NodeData(Statement)[]
+			statements: NodeData(Statement, DescriptiveType, ExportDeclaration, ExternDeclaration)[]
 		}
 		NumericExpression {
 			modifiers: ModifierData[]
@@ -572,6 +578,11 @@ type NodeData = Range & {
 		PlaceholderArgument {
 			modifiers: ModifierData[]
 			index: NodeData(NumericExpression)?
+		}
+		PolyadicExpression {
+			modifiers: ModifierData[]
+			operator: BinaryOperatorData
+			operands: NodeData(Expression)[]
 		}
 		PositionalArgument {
 			modifiers: ModifierData[]
@@ -731,7 +742,7 @@ type NodeData = Range & {
 		TypeAliasDeclaration {
 			attributes: NodeData(AttributeDeclaration)[]
 			name: NodeData(Identifier)
-			parameters: NodeData(TypeParameter)[]?
+			typeParameters: NodeData(TypeParameter)[]?
 			type: NodeData(Type)
 		}
 		TypeList {
@@ -745,8 +756,8 @@ type NodeData = Range & {
 		}
 		TypeReference {
 			modifiers: ModifierData[]
-			name: NodeData(Identifier, MemberExpression, UnaryExpression)?
-			parameters: NodeData(Type)[]?
+			typeName: NodeData(Identifier, MemberExpression, UnaryExpression)?
+			typeParameters: NodeData(Type)[]?
 			typeSubtypes: NodeData(Identifier)[] | NodeData(Expression) | Null
 		}
 		UnaryExpression {
@@ -813,7 +824,7 @@ type NodeData = Range & {
 		}
 		WithStatement {
 			attributes: NodeData(AttributeDeclaration)[]
-			variables: NodeData(BinaryExpression, VariableDeclaration)[]
+			variables: NodeData(Expression, VariableDeclaration)[]
 			body: NodeData(Block)
 			finalizer: NodeData(Block)?
 		}
