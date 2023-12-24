@@ -1,63 +1,67 @@
-enum AssignmentOperatorKind { # {{{
-	Addition = 1
-	BitwiseAnd
-	BitwiseOr
-	BitwiseXor
-	BitwiseLeftShift
-	BitwiseRightShift
-	Division
-	Empty
-	EmptyCoalescing
-	Equals
-	Existential
-	LogicalAnd
-	LogicalOr
-	LogicalXor
-	Modulo
-	Multiplication
-	NonEmpty
-	NonExistential
-	NullCoalescing
-	Quotient
-	Return
-	Subtraction
-} # }}}
+bitmask OperatorAttribute {
+	Nil
 
-enum BinaryOperatorKind { # {{{
-	Addition = 1
-	Assignment
-	BackwardPipeline
-	BitwiseAnd
-	BitwiseOr
-	BitwiseXor
-	BitwiseLeftShift
-	BitwiseRightShift
-	Division
-	EmptyCoalescing
-	Equality
-	ForwardPipeline
-	GreaterThan
-	GreaterThanOrEqual
-	Inequality
-	JunctionAnd
-	JunctionOr
-	JunctionXor
-	LessThan
-	LessThanOrEqual
-	LogicalAnd
-	LogicalImply
-	LogicalOr
-	LogicalXor
-	Match
-	Mismatch
-	Modulo
-	Multiplication
-	NullCoalescing
-	Quotient
-	Subtraction
-	TypeCasting
-	TypeEquality
-	TypeInequality
+	Assignable
+	Binary
+	Comparable
+	Polyadic
+	RTL
+	Unary
+}
+
+enum OperatorKind<Number;1> { # {{{
+	Addition			= (.Binary + .Polyadic	+ .Assignable,			13)
+	Assignment			= (.Binary,										3)
+	BackwardPipeline	= (.Binary + .RTL,								20)
+	BitwiseAnd			= (.Binary + .Polyadic	+ .Assignable,			12)
+	BitwiseNegation		= (										.Unary,	0)
+	BitwiseOr			= (.Binary + .Polyadic	+ .Assignable,			12)
+	BitwiseXor			= (.Binary + .Polyadic	+ .Assignable,			12)
+	BitwiseLeftShift	= (.Binary + .Polyadic	+ .Assignable,			12)
+	BitwiseRightShift	= (.Binary + .Polyadic	+ .Assignable,			12)
+	Constant			= (										.Unary,	0)
+	Division			= (.Binary + .Polyadic	+ .Assignable,			14)
+	Empty				= (.Binary				+ .Assignable,			0)
+	EmptyCoalescing		= (.Binary + .Polyadic	+ .Assignable,			15)
+	Equality			= (.Binary + .Comparable,						8)
+	Equals				= (.Binary				+ .Assignable,			0)
+	Existential			= (.Binary				+ .Assignable +	.Unary,	0)
+	ForwardPipeline		= (.Binary,										16)
+	GreaterThan			= (.Binary + .Comparable,						8)
+	GreaterThanOrEqual	= (.Binary + .Comparable,						8)
+	Implicit			= (										.Unary,	0)
+	Inequality			= (.Binary + .Comparable,						8)
+	JunctionAnd			= (.Binary,										0)
+	JunctionOr			= (.Binary,										0)
+	JunctionXor			= (.Binary,										0)
+	LessThan			= (.Binary + .Comparable,						8)
+	LessThanOrEqual		= (.Binary + .Comparable,						8)
+	LogicalAnd			= (.Binary + .Polyadic	+ .Assignable,			6)
+	LogicalImply		= (.Binary + .Polyadic	+ .Assignable,			5)
+	LogicalNegation		= (										.Unary,	0)
+	LogicalOr			= (.Binary + .Polyadic	+ .Assignable,			5)
+	LogicalXor			= (.Binary + .Polyadic	+ .Assignable,			5)
+	Match				= (.Binary,										8)
+	Mismatch			= (.Binary,										8)
+	Modulo				= (.Binary + .Polyadic	+ .Assignable,			14)
+	Multiplication		= (.Binary + .Polyadic	+ .Assignable,			14)
+	Negative			= (										.Unary,	0)
+	NonEmpty			= (.Binary				+ .Assignable +	.Unary,	0)
+	NonExistential		= (.Binary				+ .Assignable,			0)
+	NullCoalescing		= (.Binary + .Polyadic	+ .Assignable,			15)
+	Quotient			= (.Binary + .Polyadic	+ .Assignable,			14)
+	Return				= (.Binary				+ .Assignable,			0)
+	Spread				= (										.Unary,	0)
+	Subtraction			= (.Binary + .Polyadic	+ .Assignable,			13)
+	TypeCasting			= (.Binary,										8)
+	TypeEquality		= (.Binary,										8)
+	TypeFitting			= (										.Unary,	0)
+	TypeInequality		= (.Binary,										8)
+
+	const {
+		attribute: OperatorAttribute
+		precedence: Number
+	}
 } # }}}
 
 enum IterationKind { # {{{
@@ -72,25 +76,17 @@ enum RestrictiveOperatorKind { # {{{
 	Unless
 } # }}}
 
-enum UnaryOperatorKind { # {{{
-	BitwiseNegation = 1
+enum UnaryTypeOperatorKind<Number;1> { # {{{
 	Constant
-	Existential
-	Implicit
-	LogicalNegation
-	Negative
-	NonEmpty
-	Spread
-	TypeFitting
-} # }}}
-
-enum UnaryTypeOperatorKind { # {{{
-	Constant = 1
 	Mutable
 	NewInstance
 	TypeOf
 	ValueOf
 } # }}}
+
+type AssignmentOperatorKind = OperatorKind(attribute ~~ .Assignable)
+type BinaryOperatorKind = OperatorKind(attribute ~~ .Binary)
+type UnaryOperatorKind = OperatorKind(attribute ~~ .Unary)
 
 type BinaryOperatorData = Range & {
 	variant kind: BinaryOperatorKind {
