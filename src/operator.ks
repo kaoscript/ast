@@ -1,4 +1,4 @@
-bitmask OperatorAttribute {
+bitmask OperatorAttribute { # {{{
 	Nil
 
 	Assignable
@@ -7,9 +7,9 @@ bitmask OperatorAttribute {
 	Polyadic
 	RTL
 	Unary
-}
+} # }}}
 
-enum OperatorKind<Number;1> { # {{{
+enum OperatorKind<Number;1> {
 	Addition			= (.Binary + .Polyadic	+ .Assignable,			13)
 	Assignment			= (.Binary,										3)
 	BackwardPipeline	= (.Binary + .RTL,								20)
@@ -25,15 +25,19 @@ enum OperatorKind<Number;1> { # {{{
 	EmptyCoalescing		= (.Binary + .Polyadic	+ .Assignable,			15)
 	Equality			= (.Binary + .Comparable,						8)
 	Equals				= (.Binary				+ .Assignable,			0)
+	EuclideanDivision	= (.Binary,										14)
 	Existential			= (.Binary				+ .Assignable +	.Unary,	0)
+	Finite				= (.Binary				+ .Assignable +	.Unary,	0)
 	ForwardPipeline		= (.Binary,										16)
 	GreaterThan			= (.Binary + .Comparable,						8)
 	GreaterThanOrEqual	= (.Binary + .Comparable,						8)
 	Implicit			= (										.Unary,	0)
 	Inequality			= (.Binary + .Comparable,						8)
+	IntegerDivision		= (.Binary + .Polyadic	+ .Assignable,			14)
 	JunctionAnd			= (.Binary,										0)
 	JunctionOr			= (.Binary,										0)
 	JunctionXor			= (.Binary,										0)
+	Length				= (										.Unary,	0)
 	LessThan			= (.Binary + .Comparable,						8)
 	LessThanOrEqual		= (.Binary + .Comparable,						8)
 	LogicalAnd			= (.Binary + .Polyadic	+ .Assignable,			6)
@@ -43,26 +47,34 @@ enum OperatorKind<Number;1> { # {{{
 	LogicalXor			= (.Binary + .Polyadic	+ .Assignable,			5)
 	Match				= (.Binary,										8)
 	Mismatch			= (.Binary,										8)
-	Modulo				= (.Binary + .Polyadic	+ .Assignable,			14)
+	Modulus				= (.Binary + .Polyadic	+ .Assignable,			14)
 	Multiplication		= (.Binary + .Polyadic	+ .Assignable,			14)
 	Negative			= (										.Unary,	0)
 	NonEmpty			= (.Binary				+ .Assignable +	.Unary,	0)
 	NonExistential		= (.Binary				+ .Assignable,			0)
+	NonFinite			= (.Binary				+ .Assignable,			0)
+	NonFiniteCoalescing	= (.Binary + .Polyadic	+ .Assignable,			15)
 	NullCoalescing		= (.Binary + .Polyadic	+ .Assignable,			15)
-	Quotient			= (.Binary + .Polyadic	+ .Assignable,			14)
+	Power				= (.Binary + .Polyadic	+ .Assignable,			14)
+	Remainder			= (.Binary + .Polyadic	+ .Assignable,			14)
 	Return				= (.Binary				+ .Assignable,			0)
 	Spread				= (										.Unary,	0)
 	Subtraction			= (.Binary + .Polyadic	+ .Assignable,			13)
-	TypeCasting			= (.Binary,										8)
+	TypeAssertion		= (.Binary,										0)
+	TypeCasting			= (.Binary,										0)
 	TypeEquality		= (.Binary,										8)
 	TypeFitting			= (										.Unary,	0)
 	TypeInequality		= (.Binary,										8)
+	TypeSignalment		= (.Binary,										0)
+	VariantNo			= (.Binary				+ .Assignable,			0)
+	VariantNoCoalescing	= (.Binary + .Polyadic	+ .Assignable,			15)
+	VariantYes			= (.Binary				+ .Assignable +	.Unary,	0)
 
 	const {
 		attribute: OperatorAttribute
 		precedence: Number
 	}
-} # }}}
+}
 
 enum IterationKind { # {{{
 	Array

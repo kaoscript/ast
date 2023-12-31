@@ -207,7 +207,7 @@ type NodeData = Range & {
 			modifiers: ModifierData[]
 			operator: BinaryOperatorData
 			left: NodeData(Expression)?
-			right: NodeData(Expression, ArrayType, ObjectType, TypeReference)?
+			right: NodeData(Expression, Type)?
 		}
 		BindingElement {
 			modifiers: ModifierData[]

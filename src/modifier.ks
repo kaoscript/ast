@@ -1,12 +1,11 @@
-enum ModifierKind { # {{{
-	Abstract = 1
+enum ModifierKind<Number;1> {
+	Abstract
 	Alias
 	Ascending
 	Async
 	Assist
 	AutoEvaluate
 	Autofill
-	AutoType
 	Ballpark
 	Computed
 	Constant
@@ -44,7 +43,7 @@ enum ModifierKind { # {{{
 	System
 	ThisAlias
 	Wildcard
-} # }}}
+}
 
 type ModifierData = Range & {
 	variant kind: ModifierKind {
