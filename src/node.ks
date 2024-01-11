@@ -19,7 +19,6 @@ enum NodeKind { # {{{
 	CallExpression
 	CatchClause
 	ClassDeclaration
-	ClassName
 	CommentBlock
 	CommentLine
 	ComparisonExpression
@@ -78,6 +77,7 @@ enum NodeKind { # {{{
 	NamespaceDeclaration
 	NumericExpression
 	ObjectBinding
+	ObjectComprehension
 	ObjectExpression
 	ObjectMember
 	ObjectType
@@ -123,6 +123,7 @@ enum NodeKind { # {{{
 	TypeList
 	TypeParameter
 	TypeReference
+	TypedExpression
 	TypedSpecifier
 	UnaryExpression
 	UnaryTypeExpression
@@ -142,7 +143,7 @@ enum NodeKind { # {{{
 
 	ClassMember = FieldDeclaration | MacroDeclaration | MethodDeclaration | PropertyDeclaration | ProxyDeclaration | ProxyGroupDeclaration
 
-	Expression = ArrayBinding | ArrayComprehension | ArrayExpression | ArrayRange | AwaitExpression | BinaryExpression | CallExpression | ComparisonExpression | ConditionalExpression | CurryExpression | DisruptiveExpression | FunctionExpression | Identifier | IfExpression | JunctionExpression | LambdaExpression | Literal | MacroExpression | MatchExpression | MemberExpression | NamedArgument | NumericExpression | ObjectBinding | ObjectExpression | ObjectMember | PlaceholderArgument | PolyadicExpression | PositionalArgument | Reference | RegularExpression | RestrictiveExpression | RollingExpression | SequenceExpression | ShorthandProperty | SpreadExpression | TaggedTemplateExpression | TemplateExpression | ThisExpression | TopicReference | TryExpression | UnaryExpression
+	Expression = ArrayBinding | ArrayComprehension | ArrayExpression | ArrayRange | AwaitExpression | BinaryExpression | CallExpression | ComparisonExpression | ConditionalExpression | CurryExpression | DisruptiveExpression | FunctionExpression | Identifier | IfExpression | JunctionExpression | LambdaExpression | Literal | MacroExpression | MatchExpression | MemberExpression | NamedArgument | NumericExpression | ObjectBinding | ObjectComprehension | ObjectExpression | ObjectMember | PlaceholderArgument | PolyadicExpression | PositionalArgument | Reference | RegularExpression | RestrictiveExpression | RollingExpression | SequenceExpression | ShorthandProperty | SpreadExpression | TaggedTemplateExpression | TemplateExpression | ThisExpression | TopicReference | TryExpression | TypedExpression | UnaryExpression
 
 	Statement = BitmaskDeclaration | BlockStatement | BreakStatement | ClassDeclaration | ContinueStatement | DiscloseDeclaration | DoUntilStatement | DoWhileStatement | EnumDeclaration | ExportDeclaration | ExternDeclaration | ExternOrImportDeclaration | ExternOrRequireDeclaration | ExpressionStatement | FallthroughStatement | ForStatement | FunctionDeclaration | IfStatement | ImplementDeclaration | ImportDeclaration | IncludeAgainDeclaration | IncludeDeclaration | MacroDeclaration | MatchStatement | NamespaceDeclaration | PassStatement | RepeatStatement | RequireDeclaration | RequireOrExternDeclaration | RequireOrImportDeclaration | ReturnStatement | SetStatement | StructDeclaration | ThrowStatement | TraitDeclaration | TryStatement | TupleDeclaration | TypeAliasDeclaration | UnlessStatement | UntilStatement | VariableStatement | VariantDeclaration | WhileStatement | WithStatement
 
@@ -165,10 +166,11 @@ type NodeData = Range & {
 		}
 		ArrayBinding {
 			elements: NodeData(BindingElement)[]
+			alias: NodeData(Identifier)?
 		}
 		ArrayComprehension {
 			modifiers: ModifierData[]
-			expression: NodeData(Expression)
+			value: NodeData(Expression)
 			loop: NodeData(ForStatement, RepeatStatement)
 		}
 		ArrayExpression {
@@ -258,6 +260,7 @@ type NodeData = Range & {
 			attributes: NodeData(AttributeDeclaration)[]
 			modifiers: ModifierData[]
 			name: NodeData(Identifier)
+			typeParameters: NodeData(TypeParameter)[]?
 			version: VersionData?
 			extends: NodeData(Identifier, MemberExpression)?
 			implements: NodeData(Identifier, MemberExpression)[]?
@@ -292,6 +295,7 @@ type NodeData = Range & {
 		DiscloseDeclaration {
 			attributes: NodeData(AttributeDeclaration)[]
 			name: NodeData(Identifier)
+			typeParameters: NodeData(TypeParameter)[]?
 			members: NodeData(ClassMember)[]
 		}
 		DisruptiveExpression {
@@ -542,6 +546,13 @@ type NodeData = Range & {
 		}
 		ObjectBinding {
 			elements: NodeData(BindingElement)[]
+			alias: NodeData(Identifier)?
+		}
+		ObjectComprehension {
+			modifiers: ModifierData[]
+			name: NodeData(ComputedPropertyName, TemplateExpression)
+			value: NodeData(Expression)
+			iteration: IterationData
 		}
 		ObjectExpression {
 			modifiers: ModifierData[]
@@ -735,6 +746,11 @@ type NodeData = Range & {
 			name: NodeData(Identifier)?
 			type: NodeData(Type)?
 			defaultValue: NodeData(Expression)?
+		}
+		TypedExpression {
+			modifiers: ModifierData[]
+			expression: NodeData(Expression)
+			typeParameters: NodeData(Type)[]?
 		}
 		TypedSpecifier {
 			type: NodeData(DescriptiveType)
