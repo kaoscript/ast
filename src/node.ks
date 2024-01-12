@@ -171,7 +171,7 @@ type NodeData = Range & {
 		ArrayComprehension {
 			modifiers: ModifierData[]
 			value: NodeData(Expression)
-			loop: NodeData(ForStatement, RepeatStatement)
+			iteration: IterationData
 		}
 		ArrayExpression {
 			modifiers: ModifierData[]
@@ -363,12 +363,10 @@ type NodeData = Range & {
 			type: NodeData(Type)?
 			value: NodeData(Expression)?
 		}
-		// TODO
 		ForStatement {
 			attributes: NodeData(AttributeDeclaration)[]
-			iteration: IterationData?
-			iterations: IterationData[]?
-			body: NodeData(Block, ExpressionStatement)?
+			iterations: IterationData[]
+			body: NodeData(Block, ExpressionStatement)
 			else: NodeData(Block)?
 		}
 		FunctionDeclaration {
@@ -640,7 +638,7 @@ type NodeData = Range & {
 		RepeatStatement {
 			attributes: NodeData(AttributeDeclaration)[]
 			expression: NodeData(Expression)?
-			body: NodeData(Block, ExpressionStatement)?
+			body: NodeData(Block, ExpressionStatement)
 		}
 		RequireDeclaration {
 			attributes: NodeData(AttributeDeclaration)[]

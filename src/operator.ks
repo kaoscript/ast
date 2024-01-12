@@ -81,6 +81,7 @@ enum IterationKind { # {{{
 	From
 	Object
 	Range
+	Repeat
 } # }}}
 
 enum RestrictiveOperatorKind { # {{{
@@ -139,6 +140,9 @@ type IterationData = Range & {
 			from: NodeData(Expression)
 			to: NodeData(Expression)
 			step: NodeData(Expression)?
+		}
+		Repeat {
+			expression: NodeData(Expression)
 		}
 	}
 	modifiers: ModifierData[]
