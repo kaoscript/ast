@@ -65,6 +65,7 @@ enum OperatorKind<Number;1> {
 	TypeEquality		= (.Binary,										8)
 	TypeFitting			= (										.Unary,	0)
 	TypeInequality		= (.Binary,										8)
+	TypeNotNull			= (										.Unary,	0)
 	TypeSignalment		= (.Binary,										0)
 	VariantNo			= (.Binary				+ .Assignable,			0)
 	VariantNoCoalescing	= (.Binary + .Polyadic	+ .Assignable,			15)

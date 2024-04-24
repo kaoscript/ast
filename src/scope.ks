@@ -5,5 +5,5 @@ enum ScopeKind {
 
 type ScopeData = {
 	kind: ScopeKind
-	value: NodeData(Identifier, ObjectExpression)?
+	value: NodeData(Argument, Identifier, ObjectExpression)?
 }
