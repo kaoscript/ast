@@ -146,6 +146,7 @@ type IterationData = Range & {
 			expression: NodeData(Expression)
 		}
 	}
+	attributes: NodeData(AttributeDeclaration)[]?
 	modifiers: ModifierData[]
 	until: NodeData(Expression)?
 	while: NodeData(Expression)?

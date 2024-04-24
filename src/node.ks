@@ -212,6 +212,7 @@ type NodeData = Range & {
 			right: NodeData(Expression, Type)?
 		}
 		BindingElement {
+			attributes: NodeData(AttributeDeclaration)[]?
 			modifiers: ModifierData[]
 			external: NodeData(Identifier)?
 			internal: NodeData(Identifier, ArrayBinding, ObjectBinding, ThisExpression)?
