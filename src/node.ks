@@ -23,7 +23,6 @@ enum NodeKind { # {{{
 	CommentLine
 	ComparisonExpression
 	ComputedPropertyName
-	ConditionalExpression
 	ContinueStatement
 	CurryExpression
 	DeclarationSpecifier
@@ -143,7 +142,7 @@ enum NodeKind { # {{{
 
 	ClassMember = FieldDeclaration | MacroDeclaration | MethodDeclaration | PropertyDeclaration | ProxyDeclaration | ProxyGroupDeclaration
 
-	Expression = ArrayBinding | ArrayComprehension | ArrayExpression | ArrayRange | AwaitExpression | BinaryExpression | CallExpression | ComparisonExpression | ConditionalExpression | CurryExpression | DisruptiveExpression | FunctionExpression | Identifier | IfExpression | JunctionExpression | LambdaExpression | Literal | MacroExpression | MatchExpression | MemberExpression | NamedArgument | NumericExpression | ObjectBinding | ObjectComprehension | ObjectExpression | ObjectMember | PlaceholderArgument | PolyadicExpression | PositionalArgument | Reference | RegularExpression | RestrictiveExpression | RollingExpression | SequenceExpression | ShorthandProperty | SpreadExpression | TaggedTemplateExpression | TemplateExpression | ThisExpression | TopicReference | TryExpression | TypedExpression | UnaryExpression
+	Expression = ArrayBinding | ArrayComprehension | ArrayExpression | ArrayRange | AwaitExpression | BinaryExpression | CallExpression | ComparisonExpression | CurryExpression | DisruptiveExpression | FunctionExpression | Identifier | IfExpression | JunctionExpression | LambdaExpression | Literal | MacroExpression | MatchExpression | MemberExpression | NamedArgument | NumericExpression | ObjectBinding | ObjectComprehension | ObjectExpression | ObjectMember | PlaceholderArgument | PolyadicExpression | PositionalArgument | Reference | RegularExpression | RestrictiveExpression | RollingExpression | SequenceExpression | ShorthandProperty | SpreadExpression | TaggedTemplateExpression | TemplateExpression | ThisExpression | TopicReference | TryExpression | TypedExpression | UnaryExpression
 
 	Statement = BitmaskDeclaration | BlockStatement | BreakStatement | ClassDeclaration | ContinueStatement | DiscloseDeclaration | DoUntilStatement | DoWhileStatement | EnumDeclaration | ExportDeclaration | ExternDeclaration | ExternOrImportDeclaration | ExternOrRequireDeclaration | ExpressionStatement | FallthroughStatement | ForStatement | FunctionDeclaration | IfStatement | ImplementDeclaration | ImportDeclaration | IncludeAgainDeclaration | IncludeDeclaration | MacroDeclaration | MatchStatement | NamespaceDeclaration | PassStatement | RepeatStatement | RequireDeclaration | RequireOrExternDeclaration | RequireOrImportDeclaration | ReturnStatement | SetStatement | StructDeclaration | ThrowStatement | TraitDeclaration | TryStatement | TupleDeclaration | TypeAliasDeclaration | UnlessStatement | UntilStatement | VariableStatement | VariantDeclaration | WhileStatement | WithStatement
 
@@ -274,12 +273,6 @@ type NodeData = Range & {
 		ComputedPropertyName {
 			expression: NodeData(Expression)
 		}
-		ConditionalExpression {
-			modifiers: ModifierData[]
-			condition: NodeData(Expression)
-			whenTrue: NodeData(Expression)
-			whenFalse: NodeData(Expression)
-		}
 		ContinueStatement {
 			attributes: NodeData(AttributeDeclaration)[]
 			label: NodeData(Identifier)?
@@ -403,8 +396,8 @@ type NodeData = Range & {
 			attributes: NodeData(AttributeDeclaration)[]
 			condition: NodeData(Expression)?
 			declaration: NodeData(VariableDeclaration)?
-			whenTrue: NodeData(Block)
-			whenFalse: NodeData(Block, IfExpression)
+			whenTrue: NodeData(Block, SetStatement)
+			whenFalse: NodeData(Block, IfExpression, SetStatement)
 		}
 		IfStatement {
 			attributes: NodeData(AttributeDeclaration)[]
