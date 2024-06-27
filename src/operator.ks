@@ -114,43 +114,43 @@ type BinaryOperatorData = Range & {
 type IterationData = Range & {
 	variant kind: IterationKind {
 		Array {
-			expression: NodeData(Expression)
-			value: NodeData(Identifier, ArrayBinding, ObjectBinding)?
-			type:  NodeData(Type)?
-			index: NodeData(Identifier)?
-			from: NodeData(Expression)?
-			to: NodeData(Expression)?
-			step: NodeData(Expression)?
-			split: NodeData(Expression)?
+			expression: Ast(Expression)
+			value: Ast(Identifier, ArrayBinding, ObjectBinding)?
+			type:  Ast(Type)?
+			index: Ast(Identifier)?
+			from: Ast(Expression)?
+			to: Ast(Expression)?
+			step: Ast(Expression)?
+			split: Ast(Expression)?
 		}
 		From {
-			variable: NodeData(Identifier)
-			from: NodeData(Expression)
-			to: NodeData(Expression)
-			step: NodeData(Expression)?
+			variable: Ast(Identifier)
+			from: Ast(Expression)
+			to: Ast(Expression)
+			step: Ast(Expression)?
 		}
 		Object {
-			expression: NodeData(Expression)
-			value: NodeData(Identifier, ArrayBinding, ObjectBinding)?
-			type:  NodeData(Type)?
-			key: NodeData(Identifier)?
+			expression: Ast(Expression)
+			value: Ast(Identifier, ArrayBinding, ObjectBinding)?
+			type:  Ast(Type)?
+			key: Ast(Identifier)?
 		}
 		Range {
-			value: NodeData(Identifier)
-			index: NodeData(Identifier)?
-			from: NodeData(Expression)
-			to: NodeData(Expression)
-			step: NodeData(Expression)?
+			value: Ast(Identifier)
+			index: Ast(Identifier)?
+			from: Ast(Expression)
+			to: Ast(Expression)
+			step: Ast(Expression)?
 		}
 		Repeat {
-			expression: NodeData(Expression)
+			expression: Ast(Expression)
 		}
 	}
-	attributes: NodeData(AttributeDeclaration)[]?
+	attributes: Ast(AttributeDeclaration)[]?
 	modifiers: ModifierData[]
-	until: NodeData(Expression)?
-	while: NodeData(Expression)?
-	when: NodeData(Expression)?
+	until: Ast(Expression)?
+	while: Ast(Expression)?
+	when: Ast(Expression)?
 }
 
 type RestrictiveOperatorData = Range & {

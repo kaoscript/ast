@@ -1,4 +1,4 @@
-enum MacroElementKind { # {{{
+enum QuoteElementKind { # {{{
 	Expression = 1
 	Literal
 	NewLine
@@ -12,12 +12,12 @@ enum ReificationKind { # {{{
 	Write
 } # }}}
 
-type MacroElementData = Range & {
-	variant kind: MacroElementKind {
+type QuoteElementData = Range & {
+	variant kind: QuoteElementKind {
 		Expression {
-			expression: NodeData(Expression)
+			expression: Ast(Expression)
 			reification: ReificationData?
-			separator: NodeData(Expression)?
+			separator: Ast(Expression)?
 		}
 		Literal {
 			value: String

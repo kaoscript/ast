@@ -4,7 +4,6 @@ enum ModifierKind<Number;1> {
 	Ascending
 	Async
 	Assist
-	AutoEvaluate
 	Autofill
 	Ballpark
 	Computed

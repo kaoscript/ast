@@ -1,4 +1,4 @@
-enum NodeKind { # {{{
+enum AstKind { # {{{
 	AccessorDeclaration = 1
 	ArrayBinding
 	ArrayComprehension
@@ -57,8 +57,6 @@ enum NodeKind { # {{{
 	JunctionExpression
 	LambdaExpression
 	Literal
-	MacroDeclaration
-	MacroExpression
 	MatchClause
 	MatchConditionArray
 	MatchConditionObject
@@ -81,6 +79,7 @@ enum NodeKind { # {{{
 	ObjectMember
 	ObjectType
 	OmittedExpression
+	Operator
 	Parameter
 	PassStatement
 	PlaceholderArgument
@@ -91,6 +90,7 @@ enum NodeKind { # {{{
 	PropertyType
 	ProxyDeclaration
 	ProxyGroupDeclaration
+	QuoteExpression
 	Reference
 	RegularExpression
 	RepeatStatement
@@ -100,6 +100,7 @@ enum NodeKind { # {{{
 	RestrictiveExpression
 	ReturnStatement
 	RollingExpression
+	SemtimeStatement
 	SequenceExpression
 	SetStatement
 	ShebangDeclaration
@@ -108,6 +109,9 @@ enum NodeKind { # {{{
 	StatementList
 	StructDeclaration
 	SurrogateDeclaration
+	SyntimeCallExpression
+	SyntimeExpression
+	SyntimeFunctionDeclaration
 	TaggedTemplateExpression
 	TemplateExpression
 	ThisExpression
@@ -140,396 +144,386 @@ enum NodeKind { # {{{
 
 	Argument = NamedArgument | PlaceholderArgument | PositionalArgument
 
-	ClassMember = FieldDeclaration | MacroDeclaration | MethodDeclaration | PropertyDeclaration | ProxyDeclaration | ProxyGroupDeclaration
+	ClassMember = FieldDeclaration | MethodDeclaration | PropertyDeclaration | ProxyDeclaration | ProxyGroupDeclaration | SyntimeExpression | SyntimeFunctionDeclaration
 
-	Expression = ArrayBinding | ArrayComprehension | ArrayExpression | ArrayRange | AwaitExpression | BinaryExpression | CallExpression | ComparisonExpression | CurryExpression | DisruptiveExpression | FunctionExpression | Identifier | IfExpression | JunctionExpression | LambdaExpression | Literal | MacroExpression | MatchExpression | MemberExpression | NamedArgument | NumericExpression | ObjectBinding | ObjectComprehension | ObjectExpression | ObjectMember | PlaceholderArgument | PolyadicExpression | PositionalArgument | Reference | RegularExpression | RestrictiveExpression | RollingExpression | SequenceExpression | ShorthandProperty | SpreadExpression | TaggedTemplateExpression | TemplateExpression | ThisExpression | TopicReference | TryExpression | TypedExpression | UnaryExpression
+	Expression = ArrayBinding | ArrayComprehension | ArrayExpression | ArrayRange | AwaitExpression | BinaryExpression | CallExpression | ComparisonExpression | CurryExpression | DisruptiveExpression | FunctionExpression | Identifier | IfExpression | JunctionExpression | LambdaExpression | Literal | MatchExpression | MemberExpression | NamedArgument | NumericExpression | ObjectBinding | ObjectComprehension | ObjectExpression | ObjectMember | Operator | PlaceholderArgument | PolyadicExpression | PositionalArgument | QuoteExpression | Reference | RegularExpression | RestrictiveExpression | RollingExpression | SequenceExpression | ShorthandProperty | SpreadExpression | SyntimeCallExpression | SyntimeExpression | TaggedTemplateExpression | TemplateExpression | ThisExpression | TopicReference | TryExpression | TypedExpression | UnaryExpression
 
-	Statement = BitmaskDeclaration | BlockStatement | BreakStatement | ClassDeclaration | ContinueStatement | DiscloseDeclaration | DoUntilStatement | DoWhileStatement | EnumDeclaration | ExportDeclaration | ExternDeclaration | ExternOrImportDeclaration | ExternOrRequireDeclaration | ExpressionStatement | FallthroughStatement | ForStatement | FunctionDeclaration | IfStatement | ImplementDeclaration | ImportDeclaration | IncludeAgainDeclaration | IncludeDeclaration | MacroDeclaration | MatchStatement | NamespaceDeclaration | PassStatement | RepeatStatement | RequireDeclaration | RequireOrExternDeclaration | RequireOrImportDeclaration | ReturnStatement | SetStatement | StructDeclaration | ThrowStatement | TraitDeclaration | TryStatement | TupleDeclaration | TypeAliasDeclaration | UnlessStatement | UntilStatement | VariableStatement | VariantDeclaration | WhileStatement | WithStatement
+	Statement = BitmaskDeclaration | BlockStatement | BreakStatement | ClassDeclaration | ContinueStatement | DiscloseDeclaration | DoUntilStatement | DoWhileStatement | EnumDeclaration | ExportDeclaration | ExternDeclaration | ExternOrImportDeclaration | ExternOrRequireDeclaration | ExpressionStatement | FallthroughStatement | ForStatement | FunctionDeclaration | IfStatement | ImplementDeclaration | ImportDeclaration | IncludeAgainDeclaration | IncludeDeclaration | MatchStatement | NamespaceDeclaration | PassStatement | RepeatStatement | RequireDeclaration | RequireOrExternDeclaration | RequireOrImportDeclaration | ReturnStatement | SemtimeStatement | SetStatement | StructDeclaration | SyntimeFunctionDeclaration | ThrowStatement | TraitDeclaration | TryStatement | TupleDeclaration | TypeAliasDeclaration | UnlessStatement | UntilStatement | VariableStatement | VariantDeclaration | WhileStatement | WithStatement
 
 	Type = ArrayType | ExclusionType| FunctionExpression | FusionType | ObjectType | TypeReference | UnaryTypeExpression | UnionType | VariantType
 
-	SpecialDeclaration = BitmaskDeclaration | ClassDeclaration | EnumDeclaration | FunctionDeclaration | MacroDeclaration | MacroExpression | NamespaceDeclaration | StructDeclaration | TupleDeclaration | TypeAliasDeclaration | VariableStatement
+	SpecialDeclaration = BitmaskDeclaration | ClassDeclaration | EnumDeclaration | FunctionDeclaration | NamespaceDeclaration | StructDeclaration | SyntimeFunctionDeclaration | TupleDeclaration | TypeAliasDeclaration | VariableStatement
 
 	DescriptiveType = SpecialDeclaration | ExportDeclaration | VariableDeclarator
 } # }}}
 
-type NodeData = Range & {
-	variant kind: NodeKind {
+type Ast = Range & {
+	variant kind: AstKind {
 		AccessorDeclaration {
-			body: NodeData(Block, Expression)?
+			body: Ast(Block, Expression)?
 		}
 		Argument {
 			modifiers: ModifierData[]
-			name: NodeData(Identifier)?
-			value: NodeData(Expression)
+			name: Ast(Identifier)?
+			value: Ast(Expression)
 		}
 		ArrayBinding {
-			elements: NodeData(BindingElement)[]
-			alias: NodeData(Identifier)?
+			elements: Ast(BindingElement)[]
+			alias: Ast(Identifier)?
 		}
 		ArrayComprehension {
 			modifiers: ModifierData[]
-			value: NodeData(Expression)
+			value: Ast(Expression)
 			iteration: IterationData
 		}
 		ArrayExpression {
 			modifiers: ModifierData[]
-			values: NodeData(Expression)[]
+			values: Ast(Expression)[]
 		}
 		ArrayRange {
-			from: NodeData(Expression)?
-			then: NodeData(Expression)?
-			til: NodeData(Expression)?
-			to: NodeData(Expression)?
-			by: NodeData(Expression)?
+			from: Ast(Expression)?
+			then: Ast(Expression)?
+			til: Ast(Expression)?
+			to: Ast(Expression)?
+			by: Ast(Expression)?
 		}
 		ArrayType {
 			modifiers: ModifierData[]
-			properties: NodeData(PropertyType)[]
-			rest: NodeData(PropertyType)?
+			properties: Ast(PropertyType)[]
+			rest: Ast(PropertyType)?
 		}
 		AttributeDeclaration {
-			declaration: NodeData(Identifier, AttributeExpression, AttributeOperation)
+			declaration: Ast(Identifier, AttributeExpression, AttributeOperation)
 		}
 		AttributeExpression {
-			name: NodeData(Identifier)
-			arguments: NodeData(Identifier, AttributeOperation, AttributeExpression)[]
+			name: Ast(Identifier)
+			arguments: Ast(Identifier, AttributeOperation, AttributeExpression)[]
 		}
 		AttributeOperation {
-			name: NodeData(Identifier)
-			value: NodeData(Literal)
+			name: Ast(Identifier)
+			value: Ast(Literal)
 		}
 		AwaitExpression {
 			modifiers: ModifierData[]
-			variables: NodeData(VariableDeclarator)[]?
-			operation: NodeData(Expression)?
+			variables: Ast(VariableDeclarator)[]?
+			operation: Ast(Expression)?
 		}
 		BinaryExpression {
 			modifiers: ModifierData[]
 			operator: BinaryOperatorData
-			left: NodeData(Expression)?
-			right: NodeData(Expression, Type)?
+			left: Ast(Expression)?
+			right: Ast(Expression, Type)?
 		}
 		BindingElement {
-			attributes: NodeData(AttributeDeclaration)[]?
+			attributes: Ast(AttributeDeclaration)[]?
 			modifiers: ModifierData[]
-			external: NodeData(Identifier)?
-			internal: NodeData(Identifier, ArrayBinding, ObjectBinding, ThisExpression)?
-			type: NodeData(Type)?
+			external: Ast(Identifier)?
+			internal: Ast(Identifier, ArrayBinding, ObjectBinding, ThisExpression)?
+			type: Ast(Type)?
 			operator: BinaryOperatorData(Assignment)?
-			defaultValue: NodeData(Expression)?
+			defaultValue: Ast(Expression)?
 		}
 		BitmaskDeclaration {
-			attributes: NodeData(AttributeDeclaration)[]
+			attributes: Ast(AttributeDeclaration)[]
 			modifiers: ModifierData[]
-			name: NodeData(Identifier)
-			type: NodeData(Identifier)?
-			members: NodeData(BitmaskValue, MethodDeclaration)[]
+			name: Ast(Identifier)
+			type: Ast(Identifier)?
+			members: Ast(BitmaskValue, MethodDeclaration)[]
 		}
 		BitmaskValue {
-			attributes: NodeData(AttributeDeclaration)[]
+			attributes: Ast(AttributeDeclaration)[]
 			modifiers: ModifierData[]
-			name: NodeData(Identifier)
-			value: NodeData(Expression)?
+			name: Ast(Identifier)
+			value: Ast(Expression)?
 		}
 		Block {
-			attributes: NodeData(AttributeDeclaration)[]
-			statements: NodeData(Statement)[]
+			attributes: Ast(AttributeDeclaration)[]
+			statements: Ast(Statement)[]
 		}
 		BlockStatement {
-			attributes: NodeData(AttributeDeclaration)[]
-			label: NodeData(Identifier)
-			body: NodeData(Block)
+			attributes: Ast(AttributeDeclaration)[]
+			label: Ast(Identifier)
+			body: Ast(Block)
 		}
 		BreakStatement {
-			attributes: NodeData(AttributeDeclaration)[]
-			label: NodeData(Identifier)?
+			attributes: Ast(AttributeDeclaration)[]
+			label: Ast(Identifier)?
 		}
 		CallExpression {
 			modifiers: ModifierData[]
 			scope: ScopeData
-			callee: NodeData(Expression)
-			arguments: NodeData(Argument, Expression)[]
+			callee: Ast(Expression)
+			arguments: Ast(Argument, Expression)[]
 		}
 		CatchClause {
-			body: NodeData(Block)
-			binding: NodeData(Identifier)?
-			type: NodeData(Identifier)?
+			body: Ast(Block)
+			binding: Ast(Identifier)?
+			type: Ast(Identifier)?
 		}
 		ClassDeclaration {
-			attributes: NodeData(AttributeDeclaration)[]
+			attributes: Ast(AttributeDeclaration)[]
 			modifiers: ModifierData[]
-			name: NodeData(Identifier)
-			typeParameters: NodeData(TypeParameter)[]?
+			name: Ast(Identifier)
+			typeParameters: Ast(TypeParameter)[]?
 			version: VersionData?
-			extends: NodeData(Identifier, MemberExpression)?
-			implements: NodeData(Identifier, MemberExpression)[]?
-			members: NodeData(ClassMember)[]
+			extends: Ast(Identifier, MemberExpression)?
+			implements: Ast(Identifier, MemberExpression)[]?
+			members: Ast(ClassMember)[]
 		}
 		ComparisonExpression {
 			modifiers: ModifierData[]
-			values: Array<NodeData(Expression) | BinaryOperatorData>
+			values: Array<Ast(Expression) | BinaryOperatorData>
 		}
 		ComputedPropertyName {
-			expression: NodeData(Expression)
+			expression: Ast(Expression)
 		}
 		ContinueStatement {
-			attributes: NodeData(AttributeDeclaration)[]
-			label: NodeData(Identifier)?
+			attributes: Ast(AttributeDeclaration)[]
+			label: Ast(Identifier)?
 		}
 		CurryExpression {
 			modifiers: ModifierData[]
 			scope: ScopeData
-			callee: NodeData(Expression)
-			arguments: NodeData(Argument, Expression)[]
+			callee: Ast(Expression)
+			arguments: Ast(Argument, Expression)[]
 		}
 		DeclarationSpecifier {
-			declaration: NodeData(SpecialDeclaration)
+			declaration: Ast(SpecialDeclaration)
 		}
 		DiscloseDeclaration {
-			attributes: NodeData(AttributeDeclaration)[]
-			name: NodeData(Identifier)
-			typeParameters: NodeData(TypeParameter)[]?
-			members: NodeData(ClassMember)[]
+			attributes: Ast(AttributeDeclaration)[]
+			name: Ast(Identifier)
+			typeParameters: Ast(TypeParameter)[]?
+			members: Ast(ClassMember)[]
 		}
 		DisruptiveExpression {
 			operator: RestrictiveOperatorData
-			condition: NodeData(Expression)
-			mainExpression: NodeData(Expression)
-			disruptedExpression: NodeData(Expression)
+			condition: Ast(Expression)
+			mainExpression: Ast(Expression)
+			disruptedExpression: Ast(Expression)
 		}
 		DoUntilStatement {
-			attributes: NodeData(AttributeDeclaration)[]
-			condition: NodeData(Expression)
-			body: NodeData(Block)
+			attributes: Ast(AttributeDeclaration)[]
+			condition: Ast(Expression)
+			body: Ast(Block)
 		}
 		DoWhileStatement {
-			attributes: NodeData(AttributeDeclaration)[]
-			condition: NodeData(Expression)
-			body: NodeData(Block)
+			attributes: Ast(AttributeDeclaration)[]
+			condition: Ast(Expression)
+			body: Ast(Block)
 		}
 		EnumDeclaration {
-			attributes: NodeData(AttributeDeclaration)[]
+			attributes: Ast(AttributeDeclaration)[]
 			modifiers: ModifierData[]
-			name: NodeData(Identifier)
-			type: NodeData(TypeReference)?
-			initial: NodeData(Expression)?
-			step: NodeData(Expression)?
-			members: NodeData(EnumValue, FieldDeclaration, MethodDeclaration)[]
+			name: Ast(Identifier)
+			type: Ast(TypeReference)?
+			initial: Ast(Expression)?
+			step: Ast(Expression)?
+			members: Ast(EnumValue, FieldDeclaration, MethodDeclaration)[]
 		}
 		EnumValue {
-			attributes: NodeData(AttributeDeclaration)[]
+			attributes: Ast(AttributeDeclaration)[]
 			modifiers: ModifierData[]
-			name: NodeData(Identifier)
-			value: NodeData(Expression)?
-			arguments: NodeData(Argument, Expression)[]?
+			name: Ast(Identifier)
+			value: Ast(Expression)?
+			arguments: Ast(Argument, Expression)[]?
 		}
 		ExclusionType {
-			types: NodeData(Type)[]
+			types: Ast(Type)[]
 		}
 		ExportDeclaration {
-			attributes: NodeData(AttributeDeclaration)[]
-			declarations: NodeData(DeclarationSpecifier, GroupSpecifier, NamedSpecifier, PropertiesSpecifier)[]
+			attributes: Ast(AttributeDeclaration)[]
+			declarations: Ast(DeclarationSpecifier, GroupSpecifier, NamedSpecifier, PropertiesSpecifier)[]
 		}
 		ExpressionStatement {
-			attributes: NodeData(AttributeDeclaration)[]
-			expression: NodeData(Expression)
+			attributes: Ast(AttributeDeclaration)[]
+			expression: Ast(Expression)
 		}
 		ExternDeclaration {
-			attributes: NodeData(AttributeDeclaration)[]
-			declarations: NodeData(DescriptiveType)[]
+			attributes: Ast(AttributeDeclaration)[]
+			declarations: Ast(DescriptiveType)[]
 		}
 		ExternOrImportDeclaration {
-			attributes: NodeData(AttributeDeclaration)[]
-			declarations: NodeData(ImportDeclarator)[]
+			attributes: Ast(AttributeDeclaration)[]
+			declarations: Ast(ImportDeclarator)[]
 		}
 		ExternOrRequireDeclaration {
-			attributes: NodeData(AttributeDeclaration)[]
-			declarations: NodeData(DescriptiveType)[]
+			attributes: Ast(AttributeDeclaration)[]
+			declarations: Ast(DescriptiveType)[]
 		}
 		FallthroughStatement {
-			attributes: NodeData(AttributeDeclaration)[]
+			attributes: Ast(AttributeDeclaration)[]
 		}
 		FieldDeclaration {
-			attributes: NodeData(AttributeDeclaration)[]
+			attributes: Ast(AttributeDeclaration)[]
 			modifiers: ModifierData[]
-			name: NodeData(Identifier)
-			type: NodeData(Type)?
-			value: NodeData(Expression)?
+			name: Ast(Identifier)
+			type: Ast(Type)?
+			value: Ast(Expression)?
 		}
 		ForStatement {
-			attributes: NodeData(AttributeDeclaration)[]
+			attributes: Ast(AttributeDeclaration)[]
 			iterations: IterationData[]
-			body: NodeData(Block, ExpressionStatement)
-			else: NodeData(Block)?
+			body: Ast(Block, ExpressionStatement)
+			else: Ast(Block)?
 		}
 		FunctionDeclaration {
-			attributes: NodeData(AttributeDeclaration)[]
+			attributes: Ast(AttributeDeclaration)[]
 			modifiers: ModifierData[]
-			name: NodeData(Identifier)
-			typeParameters: NodeData(TypeParameter)[]?
-			parameters: NodeData(Parameter)[]?
-			type: NodeData(Type)?
-			throws: NodeData(Identifier)[]
-			body: NodeData(Block, Expression, IfStatement, UnlessStatement)?
+			name: Ast(Identifier)
+			typeParameters: Ast(TypeParameter)[]?
+			parameters: Ast(Parameter)[]?
+			type: Ast(Type)?
+			throws: Ast(Identifier)[]
+			body: Ast(Block, Expression, IfStatement, UnlessStatement)?
 		}
 		FunctionExpression {
 			modifiers: ModifierData[]
-			parameters: NodeData(Parameter)[]?
-			type: NodeData(Type)?
-			throws: NodeData(Identifier)[]
-			body: NodeData(Block, Expression, IfStatement, UnlessStatement)?
+			parameters: Ast(Parameter)[]?
+			type: Ast(Type)?
+			throws: Ast(Identifier)[]
+			body: Ast(Block, Expression, IfStatement, UnlessStatement)?
 		}
 		FusionType {
-			types: NodeData(Type)[]
+			types: Ast(Type)[]
 		}
 		GroupSpecifier {
 			modifiers: ModifierData[]
-			elements: NodeData(NamedSpecifier, TypedSpecifier)[]
-			type: NodeData(DescriptiveType)?
+			elements: Ast(NamedSpecifier, TypedSpecifier)[]
+			type: Ast(DescriptiveType)?
 		}
 		Identifier {
 			modifiers: ModifierData[]
 			name: String
 		}
 		IfExpression {
-			attributes: NodeData(AttributeDeclaration)[]
-			condition: NodeData(Expression)?
-			declaration: NodeData(VariableDeclaration)?
-			whenTrue: NodeData(Block, SetStatement)
-			whenFalse: NodeData(Block, IfExpression, SetStatement)
+			attributes: Ast(AttributeDeclaration)[]
+			condition: Ast(Expression)?
+			declaration: Ast(VariableDeclaration)?
+			whenTrue: Ast(Block, SetStatement)
+			whenFalse: Ast(Block, IfExpression, SetStatement)
 		}
 		IfStatement {
-			attributes: NodeData(AttributeDeclaration)[]
-			condition: NodeData(Expression)?
-			declarations: NodeData(VariableDeclaration, Expression)[][]?
-			whenTrue: NodeData(Block, BreakStatement, ContinueStatement, ExpressionStatement, ReturnStatement, SetStatement, ThrowStatement)
-			whenFalse: NodeData(Block, IfStatement)?
+			attributes: Ast(AttributeDeclaration)[]
+			condition: Ast(Expression)?
+			declarations: Ast(VariableDeclaration, Expression)[][]?
+			whenTrue: Ast(Block, BreakStatement, ContinueStatement, ExpressionStatement, ReturnStatement, SetStatement, ThrowStatement)
+			whenFalse: Ast(Block, IfStatement)?
 		}
 		ImplementDeclaration {
-			attributes: NodeData(AttributeDeclaration)[]
-			variable: NodeData(Identifier, MemberExpression)
-			interface: NodeData(Identifier, MemberExpression)?
-			properties: NodeData(ClassMember)[]
+			attributes: Ast(AttributeDeclaration)[]
+			variable: Ast(Identifier, MemberExpression)
+			interface: Ast(Identifier, MemberExpression)?
+			properties: Ast(ClassMember)[]
 		}
 		ImportDeclaration {
-			attributes: NodeData(AttributeDeclaration)[]
-			declarations: NodeData(ImportDeclarator)[]
+			attributes: Ast(AttributeDeclaration)[]
+			declarations: Ast(ImportDeclarator)[]
 		}
 		ImportDeclarator {
-			attributes: NodeData(AttributeDeclaration)[]
+			attributes: Ast(AttributeDeclaration)[]
 			modifiers: ModifierData[]
-			source: NodeData(Literal)
-			arguments: NodeData(NamedArgument, PositionalArgument)[]?
-			type: NodeData(DescriptiveType, TypeList)?
-			specifiers: NodeData(GroupSpecifier, NamedSpecifier)[]
+			source: Ast(Literal)
+			arguments: Ast(NamedArgument, PositionalArgument)[]?
+			type: Ast(DescriptiveType, TypeList)?
+			specifiers: Ast(GroupSpecifier, NamedSpecifier)[]
 		}
 		IncludeAgainDeclaration {
-			attributes: NodeData(AttributeDeclaration)[]
-			declarations: NodeData(IncludeDeclarator)[]
+			attributes: Ast(AttributeDeclaration)[]
+			declarations: Ast(IncludeDeclarator)[]
 		}
 		IncludeDeclaration {
-			attributes: NodeData(AttributeDeclaration)[]
-			declarations: NodeData(IncludeDeclarator)[]
+			attributes: Ast(AttributeDeclaration)[]
+			declarations: Ast(IncludeDeclarator)[]
 		}
 		IncludeDeclarator {
-			attributes: NodeData(AttributeDeclaration)[]
+			attributes: Ast(AttributeDeclaration)[]
 			file: String
 		}
 		JunctionExpression {
 			modifiers: ModifierData[]
 			operator: BinaryOperatorData
-			operands: NodeData(Expression, Type)[]
+			operands: Ast(Expression, Type)[]
 		}
 		LambdaExpression {
 			modifiers: ModifierData[]
-			parameters: NodeData(Parameter)[]?
-			type: NodeData(Type)?
-			throws: NodeData(Identifier)[]
-			body: NodeData(Block, Expression)
+			parameters: Ast(Parameter)[]?
+			type: Ast(Type)?
+			throws: Ast(Identifier)[]
+			body: Ast(Block, Expression)
 		}
 		Literal {
 			modifiers: ModifierData[]
 			value: String
 		}
-		MacroDeclaration {
-			attributes: NodeData(AttributeDeclaration)[]
-			name: NodeData(Identifier)
-			parameters: NodeData(Parameter)[]
-			body: NodeData(Block, ExpressionStatement)
-		}
-		MacroExpression {
-			attributes: NodeData(AttributeDeclaration)[]
-			elements: MacroElementData[]
-		}
 		MatchClause {
-			conditions: NodeData(Expression, MatchConditionArray, MatchConditionObject, MatchConditionRange, MatchConditionType)[]
-			binding: NodeData(VariableDeclarator, ArrayBinding, ObjectBinding)?
-			filter: NodeData(Expression)?
-			body: NodeData(Block, Statement)
+			conditions: Ast(Expression, MatchConditionArray, MatchConditionObject, MatchConditionRange, MatchConditionType)[]
+			binding: Ast(VariableDeclarator, ArrayBinding, ObjectBinding)?
+			filter: Ast(Expression)?
+			body: Ast(Block, Statement)
 		}
 		MatchConditionArray {
-			values: NodeData(Expression, MatchConditionRange, OmittedExpression)[]
+			values: Ast(Expression, MatchConditionRange, OmittedExpression)[]
 		}
 		MatchConditionObject {
-			properties: NodeData(ObjectMember)[]
+			properties: Ast(ObjectMember)[]
 		}
 		MatchConditionRange {
-			from: NodeData(Expression)?
-			then: NodeData(Expression)?
-			til: NodeData(Expression)?
-			to: NodeData(Expression)?
+			from: Ast(Expression)?
+			then: Ast(Expression)?
+			til: Ast(Expression)?
+			to: Ast(Expression)?
 		}
 		MatchConditionType {
-			type: NodeData(Type)
+			type: Ast(Type)
 		}
 		MatchExpression {
-			expression: NodeData(Expression)
-			clauses: NodeData(MatchClause)[]
+			expression: Ast(Expression)
+			clauses: Ast(MatchClause)[]
 		}
 		MatchStatement {
-			attributes: NodeData(AttributeDeclaration)[]
-			expression: NodeData(Expression)?
-			declaration: NodeData(VariableDeclaration)?
-			clauses: NodeData(MatchClause)[]
+			attributes: Ast(AttributeDeclaration)[]
+			expression: Ast(Expression)?
+			declaration: Ast(VariableDeclaration)?
+			clauses: Ast(MatchClause)[]
 		}
 		MemberExpression {
 			modifiers: ModifierData[]
-			object: NodeData(Expression)?
-			property: NodeData(Expression)
+			object: Ast(Expression)?
+			property: Ast(Expression)
 		}
 		MethodDeclaration {
-			attributes: NodeData(AttributeDeclaration)[]
+			attributes: Ast(AttributeDeclaration)[]
 			modifiers: ModifierData[]
-			name: NodeData(Identifier)
-			typeParameters: NodeData(TypeParameter)[]?
-			parameters: NodeData(Parameter)[]
-			type: NodeData(Type)?
-			throws: NodeData(Identifier)[]
-			body: NodeData(Block, Expression, IfStatement, UnlessStatement)?
+			name: Ast(Identifier)
+			typeParameters: Ast(TypeParameter)[]?
+			parameters: Ast(Parameter)[]
+			type: Ast(Type)?
+			throws: Ast(Identifier)[]
+			body: Ast(Block, Expression, IfStatement, UnlessStatement)?
 		}
 		Module {
-			attributes: NodeData(AttributeDeclaration)[]
-			body: NodeData(Statement, ShebangDeclaration)[]
+			attributes: Ast(AttributeDeclaration)[]
+			body: Ast(Statement, ShebangDeclaration)[]
 		}
 		MutatorDeclaration {
-			body: NodeData(Block, Expression)?
+			body: Ast(Block, Expression)?
 		}
 		NamedArgument {
 			modifiers: ModifierData[]
-			name: NodeData(Identifier)
-			value: NodeData(Expression, PlaceholderArgument)
+			name: Ast(Identifier)
+			value: Ast(Expression, PlaceholderArgument)
 		}
 		NamedSpecifier {
 			modifiers: ModifierData[]
-			internal: NodeData(Identifier, MemberExpression, ArrayBinding, ObjectBinding)
-			external: NodeData(Identifier)?
+			internal: Ast(Identifier, MemberExpression, ArrayBinding, ObjectBinding)
+			external: Ast(Identifier)?
 		}
 		NamespaceDeclaration {
-			attributes: NodeData(AttributeDeclaration)[]
+			attributes: Ast(AttributeDeclaration)[]
 			modifiers: ModifierData[]
-			name: NodeData(Identifier)
-			statements: NodeData(Statement, DescriptiveType, ExportDeclaration, ExternDeclaration)[]
+			name: Ast(Identifier)
+			statements: Ast(Statement, DescriptiveType, ExportDeclaration, ExternDeclaration)[]
 		}
 		NumericExpression {
 			modifiers: ModifierData[]
@@ -537,90 +531,97 @@ type NodeData = Range & {
 			radix: Number
 		}
 		ObjectBinding {
-			elements: NodeData(BindingElement)[]
-			alias: NodeData(Identifier)?
+			elements: Ast(BindingElement)[]
+			alias: Ast(Identifier)?
 		}
 		ObjectComprehension {
 			modifiers: ModifierData[]
-			name: NodeData(ComputedPropertyName, TemplateExpression)
-			value: NodeData(Expression)
+			name: Ast(ComputedPropertyName, TemplateExpression)
+			value: Ast(Expression)
 			iteration: IterationData
 		}
 		ObjectExpression {
 			modifiers: ModifierData[]
-			attributes: NodeData(AttributeDeclaration)[]
-			properties: NodeData(Expression)[]
+			attributes: Ast(AttributeDeclaration)[]
+			properties: Ast(Expression)[]
 		}
 		ObjectMember {
-			attributes: NodeData(AttributeDeclaration)[]
+			attributes: Ast(AttributeDeclaration)[]
 			modifiers: ModifierData[]
-			name: NodeData(Identifier, ComputedPropertyName, Literal, TemplateExpression)?
-			type: NodeData(Type)?
-			value: NodeData(Expression, MatchConditionRange)?
+			name: Ast(Identifier, ComputedPropertyName, Literal, TemplateExpression)?
+			type: Ast(Type)?
+			value: Ast(Expression, MatchConditionRange)?
 		}
 		ObjectType {
 			modifiers: ModifierData[]
-			properties: NodeData(PropertyType)[]
-			rest: NodeData(PropertyType)?
+			properties: Ast(PropertyType)[]
+			rest: Ast(PropertyType)?
 		}
 		OmittedExpression {
 			modifiers: ModifierData[]
 		}
+		Operator {
+			operator: BinaryOperatorData
+		}
 		PassStatement {
-			attributes: NodeData(AttributeDeclaration)[]
+			attributes: Ast(AttributeDeclaration)[]
 		}
 		Parameter {
-			attributes: NodeData(AttributeDeclaration)[]
+			attributes: Ast(AttributeDeclaration)[]
 			modifiers: ModifierData[]
-			external: NodeData(Identifier)?
-			internal: NodeData(Identifier, ArrayBinding, ObjectBinding, ThisExpression)?
-			type: NodeData(Type)?
+			external: Ast(Identifier)?
+			internal: Ast(Identifier, ArrayBinding, ObjectBinding, ThisExpression)?
+			type: Ast(Type)?
 			operator: BinaryOperatorData(Assignment)?
-			defaultValue: NodeData(Expression)?
+			defaultValue: Ast(Expression)?
 		}
 		PlaceholderArgument {
 			modifiers: ModifierData[]
-			index: NodeData(NumericExpression)?
+			index: Ast(NumericExpression)?
 		}
 		PolyadicExpression {
 			modifiers: ModifierData[]
 			operator: BinaryOperatorData
-			operands: NodeData(Expression)[]
+			operands: Ast(Expression)[]
 		}
 		PositionalArgument {
 			modifiers: ModifierData[]
-			value: NodeData(Expression)
+			value: Ast(Expression)
 		}
 		PropertiesSpecifier {
 			modifiers: ModifierData[]
-			object: NodeData(Identifier, MemberExpression)
-			properties: NodeData(NamedSpecifier)[]
+			object: Ast(Identifier, MemberExpression)
+			properties: Ast(NamedSpecifier)[]
 		}
 		PropertyDeclaration {
-			attributes: NodeData(AttributeDeclaration)[]
+			attributes: Ast(AttributeDeclaration)[]
 			modifiers: ModifierData[]
-			name: NodeData(Identifier)
-			type: NodeData(Type)?
-			defaultValue: NodeData(Expression)?
-			accessor: NodeData(AccessorDeclaration)?
-			mutator: NodeData(MutatorDeclaration)?
+			name: Ast(Identifier)
+			type: Ast(Type)?
+			defaultValue: Ast(Expression)?
+			accessor: Ast(AccessorDeclaration)?
+			mutator: Ast(MutatorDeclaration)?
 		}
 		PropertyType {
 			modifiers: ModifierData[]
-			name: NodeData(Identifier)?
-			type: NodeData(Type)?
+			name: Ast(Identifier)?
+			type: Ast(Type)?
 		}
 		ProxyDeclaration {
-			attributes: NodeData(AttributeDeclaration)[]
+			attributes: Ast(AttributeDeclaration)[]
 			modifiers: ModifierData[]
-			internal: NodeData(Identifier)
-			external: NodeData(Expression)
+			internal: Ast(Identifier)
+			external: Ast(Expression)
 		}
 		ProxyGroupDeclaration {
-			attributes: NodeData(AttributeDeclaration)[]
+			attributes: Ast(AttributeDeclaration)[]
 			modifiers: ModifierData[]
-			recipient: NodeData(Expression)
-			elements: NodeData(ProxyDeclaration)[]
+			recipient: Ast(Expression)
+			elements: Ast(ProxyDeclaration)[]
+		}
+		QuoteExpression {
+			attributes: Ast(AttributeDeclaration)[]
+			elements: QuoteElementData[]
 		}
 		Reference {
 			name: String
@@ -630,211 +631,231 @@ type NodeData = Range & {
 			value: String
 		}
 		RepeatStatement {
-			attributes: NodeData(AttributeDeclaration)[]
-			expression: NodeData(Expression)?
-			body: NodeData(Block, ExpressionStatement)
+			attributes: Ast(AttributeDeclaration)[]
+			expression: Ast(Expression)?
+			body: Ast(Block, ExpressionStatement)
 		}
 		RequireDeclaration {
-			attributes: NodeData(AttributeDeclaration)[]
-			declarations: NodeData(DescriptiveType)[]
+			attributes: Ast(AttributeDeclaration)[]
+			declarations: Ast(DescriptiveType)[]
 		}
 		RequireOrExternDeclaration {
-			attributes: NodeData(AttributeDeclaration)[]
-			declarations: NodeData(DescriptiveType)[]
+			attributes: Ast(AttributeDeclaration)[]
+			declarations: Ast(DescriptiveType)[]
 		}
 		RequireOrImportDeclaration {
-			attributes: NodeData(AttributeDeclaration)[]
-			declarations: NodeData(ImportDeclarator)[]
+			attributes: Ast(AttributeDeclaration)[]
+			declarations: Ast(ImportDeclarator)[]
 		}
 		RestrictiveExpression {
 			operator: RestrictiveOperatorData
-			condition: NodeData(Expression)
-			expression: NodeData(Expression)
+			condition: Ast(Expression)
+			expression: Ast(Expression)
 		}
 		ReturnStatement {
-			attributes: NodeData(AttributeDeclaration)[]
-			value: NodeData(Expression)?
+			attributes: Ast(AttributeDeclaration)[]
+			value: Ast(Expression)?
 		}
 		RollingExpression {
 			modifiers: ModifierData[]
-			object: NodeData(Expression)
-			expressions: NodeData(Expression)[]
+			object: Ast(Expression)
+			expressions: Ast(Expression)[]
 		}
 		SequenceExpression {
 			modifiers: ModifierData[]
-			expressions: NodeData(Expression)[]
+			expressions: Ast(Expression)[]
+		}
+		SemtimeStatement {
+			attributes: Ast(AttributeDeclaration)[]
+			body: Ast(Block, Expression)
 		}
 		SetStatement {
-			attributes: NodeData(AttributeDeclaration)[]
-			value: NodeData(Expression)?
+			attributes: Ast(AttributeDeclaration)[]
+			value: Ast(Expression)?
 		}
 		ShebangDeclaration {
 			command: String
 		}
 		ShorthandProperty {
-			attributes: NodeData(AttributeDeclaration)[]
-			name: NodeData(Identifier, ComputedPropertyName, Literal, TemplateExpression, ThisExpression)
+			attributes: Ast(AttributeDeclaration)[]
+			name: Ast(Identifier, ComputedPropertyName, Literal, TemplateExpression, ThisExpression)
 		}
 		SpreadExpression {
-			attributes: NodeData(AttributeDeclaration)[]
+			attributes: Ast(AttributeDeclaration)[]
 			modifiers: ModifierData[]
-			operand: NodeData(Expression)
-			members: NodeData(NamedSpecifier)[]
+			operand: Ast(Expression)
+			members: Ast(NamedSpecifier)[]
 		}
 		StatementList {
-			attributes: NodeData(AttributeDeclaration)[]
-			body: NodeData(Statement)[]
+			attributes: Ast(AttributeDeclaration)[]
+			body: Ast(Statement)[]
 		}
 		StructDeclaration {
-			attributes: NodeData(AttributeDeclaration)[]
+			attributes: Ast(AttributeDeclaration)[]
 			modifiers: ModifierData[]
-			name: NodeData(Identifier)
-			extends: NodeData(TypeReference)?
-			implements: NodeData(Identifier, MemberExpression)[]?
-			fields: NodeData(FieldDeclaration)[]
+			name: Ast(Identifier)
+			extends: Ast(TypeReference)?
+			implements: Ast(Identifier, MemberExpression)[]?
+			fields: Ast(FieldDeclaration)[]
+		}
+		SyntimeCallExpression {
+			modifiers: ModifierData[]
+			callee: Ast(Expression)
+			arguments: Ast(Argument, Expression, Statement)[]
+		}
+		SyntimeExpression {
+			attributes: Ast(AttributeDeclaration)[]
+			body: Ast(Block, Statement)
+		}
+		SyntimeFunctionDeclaration {
+			attributes: Ast(AttributeDeclaration)[]
+			modifiers: ModifierData[]
+			name: Ast(Identifier)
+			parameters: Ast(Parameter)[]
+			body: Ast(Block, Expression)
 		}
 		TaggedTemplateExpression {
-			tag: NodeData(Expression)
-			template: NodeData(TemplateExpression)
+			tag: Ast(Expression)
+			template: Ast(TemplateExpression)
 		}
 		TemplateExpression {
 			modifiers: ModifierData[]
-			elements: NodeData(Expression)[]
+			elements: Ast(Expression)[]
 		}
 		ThisExpression {
 			modifiers: ModifierData[]
-			name: NodeData(Identifier)
+			name: Ast(Identifier)
 		}
 		ThrowStatement {
-			attributes: NodeData(AttributeDeclaration)[]
-			value: NodeData(Expression)?
+			attributes: Ast(AttributeDeclaration)[]
+			value: Ast(Expression)?
 		}
 		TopicReference {
 			modifiers: ModifierData[]
 		}
 		TryExpression {
 			modifiers: ModifierData[]
-			argument: NodeData(Expression)
-			defaultValue: NodeData(Expression)?
+			argument: Ast(Expression)
+			defaultValue: Ast(Expression)?
 		}
 		TryStatement {
-			attributes: NodeData(AttributeDeclaration)[]
-			body: NodeData(Block)
-			catchClauses: NodeData(CatchClause)[]
-			catchClause: NodeData(CatchClause)?
-			finalizer: NodeData(Block)?
+			attributes: Ast(AttributeDeclaration)[]
+			body: Ast(Block)
+			catchClauses: Ast(CatchClause)[]
+			catchClause: Ast(CatchClause)?
+			finalizer: Ast(Block)?
 		}
 		TupleDeclaration {
-			attributes: NodeData(AttributeDeclaration)[]
+			attributes: Ast(AttributeDeclaration)[]
 			modifiers: ModifierData[]
-			name: NodeData(Identifier)
-			extends: NodeData(Identifier)?
-			implements: NodeData(Identifier, MemberExpression)[]?
-			fields: NodeData(TupleField)[]
+			name: Ast(Identifier)
+			extends: Ast(Identifier)?
+			implements: Ast(Identifier, MemberExpression)[]?
+			fields: Ast(TupleField)[]
 		}
 		TupleField {
-			attributes: NodeData(AttributeDeclaration)[]
+			attributes: Ast(AttributeDeclaration)[]
 			modifiers: ModifierData[]
-			name: NodeData(Identifier)?
-			type: NodeData(Type)?
-			defaultValue: NodeData(Expression)?
+			name: Ast(Identifier)?
+			type: Ast(Type)?
+			defaultValue: Ast(Expression)?
 		}
 		TypedExpression {
 			modifiers: ModifierData[]
-			expression: NodeData(Expression)
-			typeParameters: NodeData(Type)[]?
+			expression: Ast(Expression)
+			typeParameters: Ast(Type)[]?
 		}
 		TypedSpecifier {
-			type: NodeData(DescriptiveType)
+			type: Ast(DescriptiveType)
 		}
 		TypeAliasDeclaration {
-			attributes: NodeData(AttributeDeclaration)[]
-			name: NodeData(Identifier)
-			typeParameters: NodeData(TypeParameter)[]?
-			type: NodeData(Type)
+			attributes: Ast(AttributeDeclaration)[]
+			name: Ast(Identifier)
+			typeParameters: Ast(TypeParameter)[]?
+			type: Ast(Type)
 		}
 		TypeList {
-			attributes: NodeData(AttributeDeclaration)[]
-			types: NodeData(DescriptiveType)[]
+			attributes: Ast(AttributeDeclaration)[]
+			types: Ast(DescriptiveType)[]
 		}
 		TypeParameter {
 			modifiers: ModifierData[]
-			name: NodeData(Identifier)
-			constraint: NodeData(Type)?
+			name: Ast(Identifier)
+			constraint: Ast(Type)?
 		}
 		TypeReference {
 			modifiers: ModifierData[]
-			typeName: NodeData(Identifier, MemberExpression, UnaryExpression)?
-			typeParameters: NodeData(Type)[]?
-			typeSubtypes: NodeData(Identifier)[] | NodeData(Expression) | Null
+			typeName: Ast(Identifier, MemberExpression, UnaryExpression)?
+			typeParameters: Ast(Type)[]?
+			typeSubtypes: Ast(Identifier)[] | Ast(Expression) | Null
 		}
 		UnaryExpression {
 			modifiers: ModifierData[]
 			operator: UnaryOperatorData
-			argument: NodeData(Expression)
+			argument: Ast(Expression)
 		}
 		UnaryTypeExpression {
 			modifiers: ModifierData[]
 			operator: UnaryTypeOperatorData
-			argument: NodeData(Type, Expression)
+			argument: Ast(Type, Expression)
 		}
 		UnionType {
-			types: NodeData(Type)[]
+			types: Ast(Type)[]
 		}
 		UnlessStatement {
-			attributes: NodeData(AttributeDeclaration)[]
-			condition: NodeData(Expression)
-			whenFalse: NodeData(Block, BreakStatement, ContinueStatement, ExpressionStatement, ReturnStatement, SetStatement, ThrowStatement)
+			attributes: Ast(AttributeDeclaration)[]
+			condition: Ast(Expression)
+			whenFalse: Ast(Block, BreakStatement, ContinueStatement, ExpressionStatement, ReturnStatement, SetStatement, ThrowStatement)
 		}
 		UntilStatement {
-			attributes: NodeData(AttributeDeclaration)[]
-			condition: NodeData(Expression)
-			body: NodeData(Block, Expression)
+			attributes: Ast(AttributeDeclaration)[]
+			condition: Ast(Expression)
+			body: Ast(Block, Expression)
 		}
 		VariableDeclaration {
-			attributes: NodeData(AttributeDeclaration)[]
+			attributes: Ast(AttributeDeclaration)[]
 			modifiers: ModifierData[]
-			variables: NodeData(VariableDeclarator)[]
+			variables: Ast(VariableDeclarator)[]
 			operator: BinaryOperatorData(Assignment)?
-			value: NodeData(Expression)?
+			value: Ast(Expression)?
 		}
 		VariableDeclarator {
-			attributes: NodeData(AttributeDeclaration)[]
+			attributes: Ast(AttributeDeclaration)[]
 			modifiers: ModifierData[]
-			name: NodeData(Identifier, ArrayBinding, ObjectBinding)
-			type: NodeData(Type)?
+			name: Ast(Identifier, ArrayBinding, ObjectBinding)
+			type: Ast(Type)?
 		}
 		VariableStatement {
-			attributes: NodeData(AttributeDeclaration)[]
+			attributes: Ast(AttributeDeclaration)[]
 			modifiers: ModifierData[]
-			declarations: NodeData(VariableDeclaration)[]
+			declarations: Ast(VariableDeclaration)[]
 		}
 		VariantDeclaration {
-			attributes: NodeData(AttributeDeclaration)[]
+			attributes: Ast(AttributeDeclaration)[]
 			modifiers: ModifierData[]
-			name: NodeData(Identifier)
-			fields: NodeData(VariantField)[]
+			name: Ast(Identifier)
+			fields: Ast(VariantField)[]
 		}
 		VariantField {
-			attributes: NodeData(AttributeDeclaration)[]
+			attributes: Ast(AttributeDeclaration)[]
 			modifiers: ModifierData[]
-			names: NodeData(Identifier)[]
-			type: NodeData(Type)?
+			names: Ast(Identifier)[]
+			type: Ast(Type)?
 		}
 		VariantType {
-			master: NodeData(TypeReference)
-			properties: NodeData(VariantField)[]
+			master: Ast(TypeReference)
+			properties: Ast(VariantField)[]
 		}
 		WhileStatement {
-			attributes: NodeData(AttributeDeclaration)[]
-			condition: NodeData(Expression, VariableDeclaration)
-			body: NodeData(Block, Expression)
+			attributes: Ast(AttributeDeclaration)[]
+			condition: Ast(Expression, VariableDeclaration)
+			body: Ast(Block, Expression)
 		}
 		WithStatement {
-			attributes: NodeData(AttributeDeclaration)[]
-			variables: NodeData(Expression, VariableDeclaration)[]
-			body: NodeData(Block)
-			finalizer: NodeData(Block)?
+			attributes: Ast(AttributeDeclaration)[]
+			variables: Ast(Expression, VariableDeclaration)[]
+			body: Ast(Block)
+			finalizer: Ast(Block)?
 		}
 	}
 }

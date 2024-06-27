@@ -24,10 +24,10 @@ type VersionData = Range & {
 }
 
 include {
-	'./macro.ks'
 	'./modifier.ks'
 	'./node.ks'
 	'./operator.ks'
+	'./quote.ks'
 	'./scope.ks'
 }
 
