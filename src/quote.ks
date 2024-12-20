@@ -1,22 +1,27 @@
 enum QuoteElementKind { # {{{
-	Expression = 1
+	Escape = 1
+	Expression
 	Literal
 	NewLine
 } # }}}
 
 enum ReificationKind { # {{{
 	Argument = 1
-	Expression
+	Block
+	Code
+	Identifier
 	Join
-	Statement
-	Write
+	Value
 } # }}}
 
 type QuoteElementData = Range & {
 	variant kind: QuoteElementKind {
+		Escape {
+			value: String
+		}
 		Expression {
 			expression: Ast(Expression)
-			reification: ReificationData?
+			reifications: ReificationData[]
 			separator: Ast(Expression)?
 		}
 		Literal {

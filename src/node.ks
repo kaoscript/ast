@@ -57,6 +57,7 @@ enum AstKind { # {{{
 	JunctionExpression
 	LambdaExpression
 	Literal
+	MacroDeclaration
 	MatchClause
 	MatchConditionArray
 	MatchConditionObject
@@ -110,8 +111,8 @@ enum AstKind { # {{{
 	StructDeclaration
 	SurrogateDeclaration
 	SyntimeCallExpression
-	SyntimeExpression
-	SyntimeFunctionDeclaration
+	SyntimeDeclaration
+	SyntimeStatement
 	TaggedTemplateExpression
 	TemplateExpression
 	ThisExpression
@@ -144,15 +145,15 @@ enum AstKind { # {{{
 
 	Argument = NamedArgument | PlaceholderArgument | PositionalArgument
 
-	ClassMember = FieldDeclaration | MethodDeclaration | PropertyDeclaration | ProxyDeclaration | ProxyGroupDeclaration | SyntimeExpression | SyntimeFunctionDeclaration
+	ClassMember = FieldDeclaration | MethodDeclaration | PropertyDeclaration | ProxyDeclaration | ProxyGroupDeclaration | SyntimeStatement
 
-	Expression = ArrayBinding | ArrayComprehension | ArrayExpression | ArrayRange | AwaitExpression | BinaryExpression | CallExpression | ComparisonExpression | CurryExpression | DisruptiveExpression | FunctionExpression | Identifier | IfExpression | JunctionExpression | LambdaExpression | Literal | MatchExpression | MemberExpression | NamedArgument | NumericExpression | ObjectBinding | ObjectComprehension | ObjectExpression | ObjectMember | Operator | PlaceholderArgument | PolyadicExpression | PositionalArgument | QuoteExpression | Reference | RegularExpression | RestrictiveExpression | RollingExpression | SequenceExpression | ShorthandProperty | SpreadExpression | SyntimeCallExpression | SyntimeExpression | TaggedTemplateExpression | TemplateExpression | ThisExpression | TopicReference | TryExpression | TypedExpression | UnaryExpression
+	Expression = ArrayBinding | ArrayComprehension | ArrayExpression | ArrayRange | AwaitExpression | BinaryExpression | CallExpression | ComparisonExpression | CurryExpression | DisruptiveExpression | FunctionExpression | Identifier | IfExpression | JunctionExpression | LambdaExpression | Literal | MatchExpression | MemberExpression | NamedArgument | NumericExpression | ObjectBinding | ObjectComprehension | ObjectExpression | ObjectMember | Operator | PlaceholderArgument | PolyadicExpression | PositionalArgument | QuoteExpression | Reference | RegularExpression | RestrictiveExpression | RollingExpression | SequenceExpression | ShorthandProperty | SpreadExpression | SyntimeCallExpression | TaggedTemplateExpression | TemplateExpression | ThisExpression | TopicReference | TryExpression | TypedExpression | UnaryExpression
 
-	Statement = BitmaskDeclaration | BlockStatement | BreakStatement | ClassDeclaration | ContinueStatement | DiscloseDeclaration | DoUntilStatement | DoWhileStatement | EnumDeclaration | ExportDeclaration | ExternDeclaration | ExternOrImportDeclaration | ExternOrRequireDeclaration | ExpressionStatement | FallthroughStatement | ForStatement | FunctionDeclaration | IfStatement | ImplementDeclaration | ImportDeclaration | IncludeAgainDeclaration | IncludeDeclaration | MatchStatement | NamespaceDeclaration | PassStatement | RepeatStatement | RequireDeclaration | RequireOrExternDeclaration | RequireOrImportDeclaration | ReturnStatement | SemtimeStatement | SetStatement | StructDeclaration | SyntimeFunctionDeclaration | ThrowStatement | TraitDeclaration | TryStatement | TupleDeclaration | TypeAliasDeclaration | UnlessStatement | UntilStatement | VariableStatement | VariantDeclaration | WhileStatement | WithStatement
+	Statement = BitmaskDeclaration | BlockStatement | BreakStatement | ClassDeclaration | ContinueStatement | DiscloseDeclaration | DoUntilStatement | DoWhileStatement | EnumDeclaration | ExportDeclaration | ExternDeclaration | ExternOrImportDeclaration | ExternOrRequireDeclaration | ExpressionStatement | FallthroughStatement | ForStatement | FunctionDeclaration | IfStatement | ImplementDeclaration | ImportDeclaration | IncludeAgainDeclaration | IncludeDeclaration | MacroDeclaration | MatchStatement | NamespaceDeclaration | PassStatement | RepeatStatement | RequireDeclaration | RequireOrExternDeclaration | RequireOrImportDeclaration | ReturnStatement | SemtimeStatement | SetStatement | StructDeclaration | SyntimeDeclaration | SyntimeStatement | ThrowStatement | TraitDeclaration | TryStatement | TupleDeclaration | TypeAliasDeclaration | UnlessStatement | UntilStatement | VariableStatement | VariantDeclaration | WhileStatement | WithStatement
 
 	Type = ArrayType | ExclusionType| FunctionExpression | FusionType | ObjectType | TypeReference | UnaryTypeExpression | UnionType | VariantType
 
-	SpecialDeclaration = BitmaskDeclaration | ClassDeclaration | EnumDeclaration | FunctionDeclaration | NamespaceDeclaration | StructDeclaration | SyntimeFunctionDeclaration | TupleDeclaration | TypeAliasDeclaration | VariableStatement
+	SpecialDeclaration = BitmaskDeclaration | ClassDeclaration | EnumDeclaration | FunctionDeclaration | MacroDeclaration | NamespaceDeclaration | StructDeclaration | SyntimeDeclaration | TupleDeclaration | TypeAliasDeclaration | VariableStatement
 
 	DescriptiveType = SpecialDeclaration | ExportDeclaration | VariableDeclarator
 } # }}}
@@ -456,6 +457,13 @@ type Ast = Range & {
 			modifiers: ModifierData[]
 			value: String
 		}
+		MacroDeclaration {
+			attributes: Ast(AttributeDeclaration)[]
+			modifiers: ModifierData[]
+			name: Ast(Identifier)
+			parameters: Ast(Parameter)[]
+			body: Ast(Block, Expression)
+		}
 		MatchClause {
 			conditions: Ast(Expression, MatchConditionArray, MatchConditionObject, MatchConditionRange, MatchConditionType)[]
 			binding: Ast(VariableDeclarator, ArrayBinding, ObjectBinding)?
@@ -703,16 +711,13 @@ type Ast = Range & {
 			callee: Ast(Expression)
 			arguments: Ast(Argument, Expression, Statement)[]
 		}
-		SyntimeExpression {
+		SyntimeDeclaration {
 			attributes: Ast(AttributeDeclaration)[]
-			body: Ast(Block, Statement)
+			declarations: Ast(ImplementDeclaration, MacroDeclaration, NamespaceDeclaration)[]
 		}
-		SyntimeFunctionDeclaration {
+		SyntimeStatement {
 			attributes: Ast(AttributeDeclaration)[]
-			modifiers: ModifierData[]
-			name: Ast(Identifier)
-			parameters: Ast(Parameter)[]
-			body: Ast(Block, Expression)
+			body: Ast(Block)
 		}
 		TaggedTemplateExpression {
 			tag: Ast(Expression)
